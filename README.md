@@ -34,7 +34,7 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 | Resi Tracker (`/lacak`) | ✅ Jadi | Selesai (Linimasa 5 tahap & rincian hak warga) |
 | Lapor Pungli & Sanggah + Tiket (`/lapor`, `/tiket`) | ✅ Jadi | Selesai (100% anonim, tiket rahasia, audit trail) |
 | Peta Anomali (`/peta`) | ✅ Jadi | Selesai (View analitik SQL, rasio BPS, tabel red-flag) |
-| Scorecard SLA (`/scorecard`) | 🟡 Proses | Dimajukan hari ini: kepatuhan respon 72 jam & 14 hari |
+| Scorecard SLA (`/scorecard`, `/data`) | ✅ Jadi | Selesai (Peringkat SLA 72j/14h, ekspor CSV, metodologi) |
 | Panel Admin (`/admin`) | 🟡 Proses | Dimajukan hari ini: Filament 5 moderasi & audit |
 
 Legenda: ✅ Jadi · 🟡 Sedang dikembangkan hari ini · ⬜ Belum

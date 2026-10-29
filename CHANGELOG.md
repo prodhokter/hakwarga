@@ -11,6 +11,15 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ## [Unreleased]
 
 ### Added
+- **Modul D: Scorecard Kepatuhan SLA Instansi & Keterbukaan Data Publik (`/scorecard`, `/data`):**
+  - Layanan `App\Services\SlaScoreService`: perhitungan skor komposit kepatuhan instansi berdasarkan target respon awal 72 jam (bobot 50%) dan batas penyelesaian 14 hari (bobot 50%).
+  - Penentuan nilai mutu instansi (Grade A &ge; 85, Grade B &ge; 70, Grade C &ge; 55, Grade D &lt; 55) dengan syarat minimal 5 laporan jatuh tempo evaluasi.
+  - Halaman papan peringkat Scorecard SLA (`/scorecard`): leaderboard instansi, filter wilayah/tipe instansi, dan rincian performa kecepatan tindak lanjut.
+  - Halaman profil detail instansi (`/scorecard/{agency:slug}`): riwayat aduan terkait dan persentase keberhasilan SLA.
+  - Halaman Keterbukaan Data Publik (`/data`): penjelasan metodologi dan rumus analisis matematis transparan.
+  - Fitur ekspor dataset publik format CSV ber-stream (`/data/unduh/sla` dan `/data/unduh/anomali`).
+  - Endpoint API publik `/api/v1/scorecard` berformat JSON.
+  - Pengujian Pest 8 skenario pengujian baru (44 tests, 297 assertions 100% lolos).
 - **Modul B: Peta Anomali & Deteksi Red-Flag (`/peta`, `/api/v1/map/choropleth`):**
   - View analitik PostgreSQL 16 `v_anomaly_scores` dengan CTE kalkulasi rasio penerima terhadap estimasi kemiskinan dan fungsi jendela `percentile_cont(0.5)`.
   - PHP Backed Enum: `AnomalyFlag` (`under_coverage`, `over_coverage`, `normal`).

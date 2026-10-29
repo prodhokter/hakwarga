@@ -49,12 +49,12 @@
 - [x] B-309: Komponen aksesibel Tabel Red-Flag wilayah (alternatif peta) (F)
 - [x] B-312: Unit & Feature test untuk `AnomalyService` dan endpoint peta (K)
 
-### Dimajukan Hari Ini (Batch 4: Modul D Scorecard SLA Instansi)
-- [ ] B-501: Seeder dataset laporan simulasi dengan variasi waktu tanggap instansi (K+D)
-- [ ] B-502: `SlaScoreService` penghitung target 72 jam respon awal dan 14 hari selesai (bobot 50:50) (K)
-- [ ] B-503: UI `/scorecard` peringkat kepatuhan instansi penyalur (F)
-- [ ] B-504: Halaman detail instansi: tren kecepatan respon dan distribusi status tiket (`/scorecard/{agency:slug}`) (F)
-- [ ] B-505 & B-506: Halaman `/data`: metodologi perhitungan skor SLA dan unduhan dataset CSV (D+K)
+### Selesai Dieksekusi (Batch 4: Modul D Scorecard SLA Instansi & Data Publik)
+- [x] B-501: Seeder dataset laporan simulasi dengan variasi waktu tanggap instansi (K+D)
+- [x] B-502: `SlaScoreService` penghitung target 72 jam respon awal dan 14 hari selesai (bobot 50:50) (K)
+- [x] B-503: UI `/scorecard` peringkat kepatuhan instansi penyalur (F)
+- [x] B-504: Halaman detail instansi: tren kecepatan respon dan distribusi status tiket (`/scorecard/{agency:slug}`) (F)
+- [x] B-505 & B-506: Halaman `/data`: metodologi perhitungan skor SLA dan unduhan dataset CSV (D+K)
 
 ### Dimajukan Hari Ini (Batch 5: Panel Admin Filament 5 & API v1)
 - [ ] B-601: Instalasi & konfigurasi Filament 5 (`/admin`) dengan peran `super_admin`, `moderator`, `agency_officer` (K)

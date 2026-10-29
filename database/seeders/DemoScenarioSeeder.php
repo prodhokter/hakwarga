@@ -6,7 +6,10 @@ namespace Database\Seeders;
 
 use App\Enums\AgencyType;
 use App\Enums\EligibilityStatus;
+use App\Enums\ExtortionCategory;
 use App\Enums\RegionLevel;
+use App\Enums\ReportStatus;
+use App\Enums\ReportType;
 use App\Enums\ShipmentStatus;
 use App\Models\Agency;
 use App\Models\AidAllocation;
@@ -14,8 +17,11 @@ use App\Models\AidProgram;
 use App\Models\Beneficiary;
 use App\Models\PovertyStat;
 use App\Models\Region;
+use App\Models\Report;
+use App\Models\ReportUpdate;
 use App\Models\Shipment;
 use App\Models\ShipmentEvent;
+use App\Services\TicketCodeFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -428,5 +434,105 @@ class DemoScenarioSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+
+        // 10. Simulated Reports for Scorecard SLA Evaluation
+        $dinsosCilacap = Agency::firstOrCreate(
+            ['slug' => 'dinsos-cilacap'],
+            [
+                'name' => 'Dinas Sosial Kabupaten Cilacap',
+                'type' => AgencyType::RegencySocialOffice,
+                'region_id' => $cilacap->id,
+                'is_simulated' => true,
+            ]
+        );
+
+        $ticketFactory = new TicketCodeFactory;
+
+        // Seed 6 reports for Dinsos Banyumas (mostly fast response & resolved -> Grade A)
+        for ($i = 1; $i <= 6; $i++) {
+            $created = Carbon::now()->subDays(15 - $i);
+            $firstResp = $created->copy()->addHours(12 + ($i * 4)); // <= 72 hours
+            $resolved = $i <= 5 ? $created->copy()->addDays(5 + $i) : null; // <= 14 days
+
+            $rep = Report::updateOrCreate(
+                ['ticket_code' => sprintf('HWT-2026-BMS%03d', $i)],
+                [
+                    'secret_hash' => $ticketFactory->hashSecret(sprintf('BMS%02d-TEST-CODE', $i)),
+                    'type' => ReportType::Extortion,
+                    'category' => ExtortionCategory::AdminFee->value,
+                    'region_id' => $banyumas->id,
+                    'agency_id' => $dinsos->id,
+                    'amount_claimed' => 20000 * $i,
+                    'description' => sprintf('Laporan simulasi penarikan biaya administrasi nomor %d di wilayah Banyumas.', $i),
+                    'status' => $resolved ? ReportStatus::Resolved : ReportStatus::InProgress,
+                    'first_response_at' => $firstResp,
+                    'resolved_at' => $resolved,
+                    'is_simulated' => true,
+                    'created_at' => $created,
+                    'updated_at' => $resolved ?? $firstResp,
+                ]
+            );
+
+            ReportUpdate::firstOrCreate(
+                ['report_id' => $rep->id, 'status' => ReportStatus::InProgress],
+                [
+                    'message' => 'Petugas Dinsos Banyumas telah melakukan verifikasi ke kantor desa.',
+                    'is_public' => true,
+                    'created_at' => $firstResp,
+                ]
+            );
+        }
+
+        // Seed 5 reports for PT Pos (mixed response -> Grade B)
+        for ($i = 1; $i <= 5; $i++) {
+            $created = Carbon::now()->subDays(20 - ($i * 2));
+            $firstResp = $i <= 4 ? $created->copy()->addHours(36) : $created->copy()->addHours(96); // 1 late
+            $resolved = $i <= 3 ? $created->copy()->addDays(8) : null;
+
+            Report::updateOrCreate(
+                ['ticket_code' => sprintf('HWT-2026-POS%03d', $i)],
+                [
+                    'secret_hash' => $ticketFactory->hashSecret(sprintf('POS%02d-TEST-CODE', $i)),
+                    'type' => ReportType::Extortion,
+                    'category' => ExtortionCategory::CashDeduction->value,
+                    'region_id' => $banyumas->id,
+                    'agency_id' => $pos->id,
+                    'amount_claimed' => 50000,
+                    'description' => sprintf('Laporan keterlambatan dan selisih uang bansos kantor pos nomor %d.', $i),
+                    'status' => $resolved ? ReportStatus::Resolved : ReportStatus::InProgress,
+                    'first_response_at' => $firstResp,
+                    'resolved_at' => $resolved,
+                    'is_simulated' => true,
+                    'created_at' => $created,
+                    'updated_at' => $resolved ?? $firstResp,
+                ]
+            );
+        }
+
+        // Seed 5 reports for Dinsos Cilacap (slower response -> Grade C)
+        for ($i = 1; $i <= 5; $i++) {
+            $created = Carbon::now()->subDays(25 - ($i * 2));
+            $firstResp = $i <= 2 ? $created->copy()->addHours(48) : $created->copy()->addHours(110); // 3 late
+            $resolved = $i === 1 ? $created->copy()->addDays(12) : null;
+
+            Report::updateOrCreate(
+                ['ticket_code' => sprintf('HWT-2026-CLP%03d', $i)],
+                [
+                    'secret_hash' => $ticketFactory->hashSecret(sprintf('CLP%02d-TEST-CODE', $i)),
+                    'type' => ReportType::Extortion,
+                    'category' => ExtortionCategory::CardWithheld->value,
+                    'region_id' => $cilacap->id,
+                    'agency_id' => $dinsosCilacap->id,
+                    'amount_claimed' => 0,
+                    'description' => sprintf('Laporan penahanan kartu KKS di wilayah Cilacap nomor %d.', $i),
+                    'status' => $resolved ? ReportStatus::Resolved : ReportStatus::Submitted,
+                    'first_response_at' => $firstResp,
+                    'resolved_at' => $resolved,
+                    'is_simulated' => true,
+                    'created_at' => $created,
+                    'updated_at' => $resolved ?? $firstResp,
+                ]
+            );
+        }
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ScorecardController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TrackerController;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +37,12 @@ Route::prefix('tiket')->name('ticket.')->group(function () {
 
 Route::get('/peta', [MapController::class, 'index'])->name('map.index');
 
-Route::get('/scorecard', fn () => view('pages.coming-soon', [
-    'title' => 'Scorecard SLA Instansi',
-    'module' => 'Peringkat Kepatuhan SLA',
-    'description' => 'Pemantauan kepatuhan respon 72 jam dan penyelesaian 14 hari instansi penyalur atas aduan warga.',
-]))->name('scorecard.index');
+Route::prefix('scorecard')->name('scorecard.')->group(function () {
+    Route::get('/', [ScorecardController::class, 'index'])->name('index');
+    Route::get('/{agency:slug}', [ScorecardController::class, 'show'])->name('show');
+});
+
+Route::get('/data', [ScorecardController::class, 'data'])->name('data.index');
+Route::get('/data/unduh/{dataset}', [ScorecardController::class, 'export'])->name('data.export');
 
 Route::get('/tentang', fn () => view('pages.about'))->name('about');
