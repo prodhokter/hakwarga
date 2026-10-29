@@ -10,15 +10,15 @@
 | Area | Status | Catatan |
 |---|---|---|
 | Konsep & paket dokumen | ✅ v0.1 | Dibuat 30 Okt |
-| Repo + scaffold Laravel | ⬜ | B-001, B-002 |
-| Landing page | ⬜ | B-107 |
-| Resi Tracker | ⬜ | B-201 s.d. B-207 |
-| Wireframe & Figma | ⬜ | B-101 s.d. B-103 |
-| Peta Anomali | ⬜ | M2 (stretch M1) |
-| Lapor & Tiket | ⬜ | M2 |
-| Scorecard SLA | ⬜ | M2 |
-| Admin (Filament) | ⬜ | M2 |
-| PDF First Draft | ⬜ | B-902 |
+| Repo + scaffold Laravel | ✅ | Selesai B-001 s.d. B-003 |
+| Landing page | ✅ | Selesai B-106, B-107 |
+| Resi Tracker | ✅ | Selesai B-201 s.d. B-206 |
+| Wireframe & UI System | ✅ | Selesai (Anti-slop Tailwind v4) |
+| Peta Anomali | ⬜ | Rencana M2 |
+| Lapor & Tiket | ⬜ | Rencana M2 |
+| Scorecard SLA | ⬜ | Rencana M2 |
+| Admin (Filament) | ⬜ | Rencana M2 |
+| PDF First Draft | 🟡 | B-902 dalam penyusunan |
 
 Legenda: ⬜ belum · 🟡 berjalan · ✅ selesai · ⛔ terblokir
 

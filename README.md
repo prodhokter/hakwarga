@@ -30,12 +30,12 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 
 | Modul | Status | Keterangan |
 |---|---|---|
-| Landing page | ⬜ Belum | Target M1 (1 Nov) |
-| Resi Tracker (`/lacak`) | ⬜ Belum | Target M1 |
-| Peta Anomali (`/peta`) | ⬜ Belum | Wireframe → M2 |
-| Lapor Pungli & Sanggah + Tiket | ⬜ Belum | Wireframe → M2 |
-| Scorecard SLA | ⬜ Belum | Wireframe → M2 |
-| Panel Admin | ⬜ Belum | M2 |
+| Landing page | ✅ Jadi | Selesai di Milestone 1 |
+| Resi Tracker (`/lacak`) | ✅ Jadi | Selesai di Milestone 1 (Linimasa 5 tahap & rincian hak) |
+| Peta Anomali (`/peta`) | ⬜ Segera | Wireframe & Rencana → Target M2 |
+| Lapor Pungli & Sanggah + Tiket | ⬜ Segera | Wireframe & Rencana → Target M2 |
+| Scorecard SLA | ⬜ Segera | Wireframe & Rencana → Target M2 |
+| Panel Admin | ⬜ Belum | Target M2 |
 
 Legenda: ✅ Jadi · 🟡 Sebagian · ⬜ Belum (hanya wireframe/rencana)
 

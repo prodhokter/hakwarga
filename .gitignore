@@ -20,6 +20,7 @@
 /storage/pail
 /vendor
 .superpowers
+.playwright-mcp
 Homestead.json
 Homestead.yaml
 Thumbs.db
