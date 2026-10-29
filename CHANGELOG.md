@@ -11,8 +11,16 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ## [Unreleased]
 
 ### Added
-- Modul C: Skema database laporan pungli & sanggah (`reports`, `report_updates`, `report_attachments`) dalam proses eksekusi.
-- Master plan percepatan pengembangan penuh seluruh modul hari ini (30 Okt 2026).
+- **Modul C: Kanal Lapor Pungli, Sanggah Bansos & Tiket Rahasia (`/lapor`, `/tiket`):**
+  - Migrasi database tabel `reports`, `report_updates`, dan `report_attachments` dengan proteksi integritas FK cascade.
+  - PHP Backed Enums: `ReportType`, `ReportStatus`, `ExtortionCategory`, `DisputeCategory`.
+  - Layanan `App\Services\TicketCodeFactory`: generator nomor tiket resmi `HWT-YYYY-XXXXXX` dan kode rahasia 12 karakter berpembanding `hash_equals` (sha256).
+  - Layanan `App\Services\PiiMasker`: sensor otomatis 16-digit angka NIK (`[NIK DISAMARKAN]`) dan format nomor telepon Indonesia (`[NOMOR TELEPON DISAMARKAN]`) pada deskripsi aduan bebas.
+  - Alur Lapor Pungli 100% anonim (`/lapor/pungli`) tanpa kolom identitas pelapor dan tanpa pencatatan IP/user-agent.
+  - Alur Sanggah Kelayakan Bansos (`/lapor/sanggah`) dengan referensi program dan wilayah kelurahan/desa.
+  - Halaman sukses tiket satu kali tampil (`/lapor/sukses`) dengan peringatan keamanan pencatatan kode rahasia.
+  - Portal pelacakan tiket warga (`/tiket` & `/tiket/{ticket}`): tampilan status publik terlindungi dan sesi pelapor terverifikasi untuk membaca isi aduan serta mengirim tanggapan susulan.
+  - Pengujian Pest 12 skenario pengujian baru (32 tests, 138 assertions 100% lolos).
 
 ---
 

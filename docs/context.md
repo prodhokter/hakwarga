@@ -15,8 +15,8 @@
 | Repo + scaffold Laravel | ✅ | Selesai B-001 s.d. B-003 |
 | Landing page | ✅ | Selesai B-106, B-107 |
 | Resi Tracker (Modul A) | ✅ | Selesai B-201 s.d. B-207 |
+| Lapor & Tiket (Modul C) | ✅ | Selesai B-401 s.d. B-410 |
 | Wireframe & UI System | ✅ | Selesai (Anti-slop Tailwind v4) |
-| Lapor & Tiket (Modul C) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | Peta Anomali (Modul B) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | Scorecard SLA (Modul D) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | Admin (Filament) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
