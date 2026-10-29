@@ -56,12 +56,12 @@
 - [x] B-504: Halaman detail instansi: tren kecepatan respon dan distribusi status tiket (`/scorecard/{agency:slug}`) (F)
 - [x] B-505 & B-506: Halaman `/data`: metodologi perhitungan skor SLA dan unduhan dataset CSV (D+K)
 
-### Dimajukan Hari Ini (Batch 5: Panel Admin Filament 5 & API v1)
-- [ ] B-601: Instalasi & konfigurasi Filament 5 (`/admin`) dengan peran `super_admin`, `moderator`, `agency_officer` (K)
-- [ ] B-602: Filament Resource Shipment & Event: update status log penyaluran (K)
-- [ ] B-603: Filament Resource Report: moderasi aduan warga, penugasan instansi, input respon, dan penutupan tiket (K)
-- [ ] B-604: Kebijakan akses / Policy per instansi (K)
-- [ ] B-006: Endpoint API v1 read-only (`routes/api.php`) + middleware rate limit (K)
+### Selesai Dieksekusi (Batch 5: Panel Admin Filament & API v1)
+- [x] B-601: Instalasi & konfigurasi Filament (`/admin`) dengan peran `super_admin`, `moderator`, `agency_officer` (K)
+- [x] B-602: Filament Resource Shipment & Event: update status log penyaluran (K)
+- [x] B-603: Filament Resource Report: moderasi aduan warga, penugasan instansi, input respon, dan penutupan tiket (K)
+- [x] B-604: Kebijakan akses / Hak akses panel admin (K)
+- [x] B-006: Endpoint API v1 read-only (`/api/v1/map/choropleth`, `/api/v1/scorecard`) + middleware rate limit (K)
 
 ### Dimajukan Hari Ini (Batch 6: Kualitas, Dokumen & Submisi)
 - [ ] B-801 & B-802: Pengujian performa Lighthouse awal dan aksesibilitas WCAG AA (F)

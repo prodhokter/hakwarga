@@ -35,7 +35,7 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 | Lapor Pungli & Sanggah + Tiket (`/lapor`, `/tiket`) | ✅ Jadi | Selesai (100% anonim, tiket rahasia, audit trail) |
 | Peta Anomali (`/peta`) | ✅ Jadi | Selesai (View analitik SQL, rasio BPS, tabel red-flag) |
 | Scorecard SLA (`/scorecard`, `/data`) | ✅ Jadi | Selesai (Peringkat SLA 72j/14h, ekspor CSV, metodologi) |
-| Panel Admin (`/admin`) | 🟡 Proses | Dimajukan hari ini: Filament 5 moderasi & audit |
+| Panel Admin (`/admin`) | ✅ Jadi | Selesai (Filament admin panel, Shipment & Report resource) |
 
 Legenda: ✅ Jadi · 🟡 Sedang dikembangkan hari ini · ⬜ Belum
 

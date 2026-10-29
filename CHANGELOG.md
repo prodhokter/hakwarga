@@ -11,6 +11,13 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ## [Unreleased]
 
 ### Added
+- **Panel Admin Filament (`/admin`):**
+  - Integrasi Filament Admin Panel Provider di `/admin` dengan dukungan autentikasi dan peran (`UserRole`: `SuperAdmin`, `Moderator`, `AgencyOfficer`).
+  - Implementasi kontrak `FilamentUser` pada model `User`.
+  - Resource `ShipmentResource`: pengelolaan log penyaluran resi, pembaruan status, dan penelusuran penerima ter-masking.
+  - Resource `ReportResource`: moderasi aduan warga, penugasan ke instansi, input respon tindak lanjut, dan proteksi rahasia (`secret_hash` tidak pernah ditampilkan).
+  - Akun demo resmi: `admin@hakwarga.test`, `moderator@hakwarga.test`, `petugas.bms@hakwarga.test` (password: `hakwarga2026`).
+  - Pengujian Pest untuk alur autentikasi admin dan akses dashboard (47 tests, 303 assertions 100% lolos).
 - **Modul D: Scorecard Kepatuhan SLA Instansi & Keterbukaan Data Publik (`/scorecard`, `/data`):**
   - Layanan `App\Services\SlaScoreService`: perhitungan skor komposit kepatuhan instansi berdasarkan target respon awal 72 jam (bobot 50%) dan batas penyelesaian 14 hari (bobot 50%).
   - Penentuan nilai mutu instansi (Grade A &ge; 85, Grade B &ge; 70, Grade C &ge; 55, Grade D &lt; 55) dengan syarat minimal 5 laporan jatuh tempo evaluasi.

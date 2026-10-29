@@ -18,8 +18,8 @@
 | Lapor & Tiket (Modul C) | ✅ | Selesai B-401 s.d. B-410 |
 | Peta Anomali (Modul B) | ✅ | Selesai B-301 s.d. B-312 |
 | Scorecard SLA (Modul D) | ✅ | Selesai B-501 s.d. B-506 |
+| Admin (Filament) | ✅ | Selesai B-601 s.d. B-604 |
 | Wireframe & UI System | ✅ | Selesai (Anti-slop Tailwind v4) |
-| Admin (Filament) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | PDF First Draft | 🟡 | B-902 dalam penyusunan |
 
 Legenda: ⬜ belum · 🟡 berjalan · ✅ selesai · ⛔ terblokir

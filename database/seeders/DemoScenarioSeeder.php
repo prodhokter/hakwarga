@@ -11,6 +11,7 @@ use App\Enums\RegionLevel;
 use App\Enums\ReportStatus;
 use App\Enums\ReportType;
 use App\Enums\ShipmentStatus;
+use App\Enums\UserRole;
 use App\Models\Agency;
 use App\Models\AidAllocation;
 use App\Models\AidProgram;
@@ -21,6 +22,7 @@ use App\Models\Report;
 use App\Models\ReportUpdate;
 use App\Models\Shipment;
 use App\Models\ShipmentEvent;
+use App\Models\User;
 use App\Services\TicketCodeFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -534,5 +536,39 @@ class DemoScenarioSeeder extends Seeder
                 ]
             );
         }
+
+        // 11. Demo Admin Users for Filament Panel
+        $demoPassword = bcrypt('hakwarga2026');
+
+        User::updateOrCreate(
+            ['email' => 'admin@hakwarga.test'],
+            [
+                'name' => 'Administrator Utama',
+                'password' => $demoPassword,
+                'role' => UserRole::SuperAdmin,
+                'email_verified_at' => now(),
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'moderator@hakwarga.test'],
+            [
+                'name' => 'Moderator Publik HakWarga',
+                'password' => $demoPassword,
+                'role' => UserRole::Moderator,
+                'email_verified_at' => now(),
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'petugas.bms@hakwarga.test'],
+            [
+                'name' => 'Petugas Dinsos Banyumas',
+                'password' => $demoPassword,
+                'role' => UserRole::AgencyOfficer,
+                'agency_id' => $dinsos->id,
+                'email_verified_at' => now(),
+            ]
+        );
     }
 }
