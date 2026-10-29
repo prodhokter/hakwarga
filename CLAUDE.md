@@ -13,6 +13,6 @@
 - **Data demo:** saat diminta membuat data, hanya sintetis (`is_simulated = true`). Jangan membuat NIK/nama/alamat yang menyerupai orang nyata.
 - **Dependensi & skema:** tanya sebelum menambah paket Composer/npm atau mengubah skema yang sudah di-merge.
 - **Perintah destruktif** (`migrate:fresh`, `db:wipe`, `rm -rf`, `git reset --hard`): hanya di lingkungan lokal dan setelah konfirmasi.
-- **Dokumentasi hidup:** setelah menyelesaikan butir, centang `docs/todos.md`, perbarui Status Progres di `README.md`, dan `docs/context.md` §1 bila status modul berubah.
+- **Dokumentasi hidup & Changelog:** setiap kali melakukan perbaikan bug, penambahan fitur, atau perubahan kode/skema/UI yang berdampak, **WAJIB memperbarui `CHANGELOG.md`** di bagian `[Unreleased]` atau versi terkait sebelum menyatakan tugas selesai. Centang juga `docs/todos.md`, perbarui Status Progres di `README.md`, dan `docs/context.md` §1 bila status modul berubah.
 - **Kejujuran:** laporkan apa yang *tidak* selesai atau tidak diuji. Jangan mengarang hasil tes atau angka performa.
 - **Subagent / eksplorasi:** boleh dipakai untuk menelusuri banyak berkas; hasil yang dipakai tetap diverifikasi sendiri sebelum diubah.

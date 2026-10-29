@@ -111,6 +111,7 @@ Menyentuh area orang lain → buat PR kecil dan minta tinjau pemiliknya.
 - [ ] Teks UI Bahasa Indonesia, tanpa string hardcode campuran
 - [ ] Tidak ada N+1 baru; migrasi dapat di-`rollback`
 - [ ] Aturan §6 tidak dilanggar
+- [ ] `CHANGELOG.md` diperbarui di bagian `[Unreleased]` atau versi terkait
 - [ ] `docs/todos.md` dicentang; `README.md` (Status Progres) & `docs/context.md` §1 diperbarui bila relevan
 
 ## 11. Cara Bekerja (untuk AI Agent)
@@ -120,8 +121,9 @@ Menyentuh area orang lain → buat PR kecil dan minta tinjau pemiliknya.
 3. Kerjakan kecil dan bertahap; jalankan tes/lint setelah tiap bagian.
 4. Jangan menambah dependensi tanpa alasan; bila perlu, catat di `docs/context.md` (Decision Log).
 5. Jangan mengubah keputusan ✅ di `context.md` §5 tanpa persetujuan tim.
-6. Setelah selesai: rangkum **apa yang berubah**, **cara mengujinya**, dan **hal yang belum selesai** (jujur).
-7. Bila persyaratan ambigu **dan** menyangkut privasi/keamanan, **bertanya** — jangan berasumsi.
+6. Catat setiap perbaikan bug, penambahan fitur, atau perubahan arsitektur ke dalam `CHANGELOG.md`.
+7. Setelah selesai: rangkum **apa yang berubah**, **cara mengujinya**, dan **hal yang belum selesai** (jujur).
+8. Bila persyaratan ambigu **dan** menyangkut privasi/keamanan, **bertanya** — jangan berasumsi.
 
 ## 12. Larangan Cepat
 
