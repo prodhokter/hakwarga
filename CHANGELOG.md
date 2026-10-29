@@ -10,6 +10,10 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ## [Unreleased]
 
+---
+
+## [0.2.0] - 2026-10-30
+
 ### Added
 - **Panel Admin Filament (`/admin`):**
   - Integrasi Filament Admin Panel Provider di `/admin` dengan dukungan autentikasi dan peran (`UserRole`: `SuperAdmin`, `Moderator`, `AgencyOfficer`).
@@ -42,6 +46,12 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
   - Layanan `App\Services\TicketCodeFactory`: generator nomor tiket resmi `HWT-YYYY-XXXXXX` dan kode rahasia 12 karakter berpembanding `hash_equals` (sha256).
   - Layanan `App\Services\PiiMasker`: sensor otomatis 16-digit angka NIK (`[NIK DISAMARKAN]`) dan format nomor telepon Indonesia (`[NOMOR TELEPON DISAMARKAN]`) pada deskripsi aduan bebas.
   - Alur Lapor Pungli 100% anonim (`/lapor/pungli`) tanpa kolom identitas pelapor dan tanpa pencatatan IP/user-agent.
+  - Alur Sanggah Kelayakan Bansos (`/lapor/sanggah`) dengan referensi program dan wilayah kelurahan/desa.
+  - Halaman sukses tiket satu kali tampil (`/lapor/sukses`) dengan peringatan keamanan pencatatan kode rahasia.
+  - Portal pelacakan tiket warga (`/tiket` & `/tiket/{ticket}`): tampilan status publik terlindungi dan sesi pelapor terverifikasi untuk membaca isi aduan serta mengirim tanggapan susulan.
+  - Pengujian Pest 12 skenario pengujian baru (32 tests, 138 assertions 100% lolos).
+- **Paket Tangkapan Layar Lengkap:**
+  - `screenshot_peta_desktop_1440.png`, `screenshot_lapor_desktop_1440.png`, `screenshot_scorecard_desktop_1440.png`, `screenshot_admin_desktop_1440.png`.
   - Alur Sanggah Kelayakan Bansos (`/lapor/sanggah`) dengan referensi program dan wilayah kelurahan/desa.
   - Halaman sukses tiket satu kali tampil (`/lapor/sukses`) dengan peringatan keamanan pencatatan kode rahasia.
   - Portal pelacakan tiket warga (`/tiket` & `/tiket/{ticket}`): tampilan status publik terlindungi dan sesi pelapor terverifikasi untuk membaca isi aduan serta mengirim tanggapan susulan.

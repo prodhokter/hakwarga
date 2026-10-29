@@ -63,7 +63,8 @@
 - [x] B-604: Kebijakan akses / Hak akses panel admin (K)
 - [x] B-006: Endpoint API v1 read-only (`/api/v1/map/choropleth`, `/api/v1/scorecard`) + middleware rate limit (K)
 
-### Dimajukan Hari Ini (Batch 6: Kualitas, Dokumen & Submisi)
-- [ ] B-801 & B-802: Pengujian performa Lighthouse awal dan aksesibilitas WCAG AA (F)
-- [ ] B-900 & B-902: Penyusunan paket PDF First Draft & Proposal lengkap (D+K)
-- [ ] B-913 & B-923: Persiapan materi pitch, ringkasan demo mandiri, dan jaring pengaman offline (ALL)
+### Selesai Dieksekusi (Batch 6: Kualitas, Dokumen & Submisi)
+- [x] B-801 & B-802: Pengujian performa, verifikasi aksesibilitas WCAG AA, dan anti-slop check (F)
+- [x] B-903: Tangkapan layar lengkap seluruh modul (Landing, Tracker, Peta, Lapor, Scorecard, Admin Login) (F)
+- [x] B-900 & B-902: Paket dokumen & struktur First Draft lengkap (D+K)
+- [x] B-923: Jaring pengaman demo mandiri via Docker PostgreSQL lokal dan seed komprehensif (K)

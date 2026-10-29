@@ -35,11 +35,12 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 | Lapor Pungli & Sanggah + Tiket (`/lapor`, `/tiket`) | ✅ Jadi | Selesai (100% anonim, tiket rahasia, audit trail) |
 | Peta Anomali (`/peta`) | ✅ Jadi | Selesai (View analitik SQL, rasio BPS, tabel red-flag) |
 | Scorecard SLA (`/scorecard`, `/data`) | ✅ Jadi | Selesai (Peringkat SLA 72j/14h, ekspor CSV, metodologi) |
-| Panel Admin (`/admin`) | ✅ Jadi | Selesai (Filament admin panel, Shipment & Report resource) |
+| Panel Admin (`/admin`) | ✅ Jadi | Selesai (Filament admin panel, Shipment & Report resource, RBAC) |
+| API Publik v1 (`/api/v1/*`) | ✅ Jadi | Selesai (Choropleth GeoJSON & Scorecard JSON read-only ter-cache) |
 
-Legenda: ✅ Jadi · 🟡 Sedang dikembangkan hari ini · ⬜ Belum
+Legenda: ✅ Jadi (Fully Functional) · 🟡 Proses · ⬜ Belum
 
-**Roadmap:** Seluruh development dipercepat dieksekusi hari ini (30 Okt 2026). Detail di [`docs/todos.md`](docs/todos.md).
+**Roadmap:** Seluruh modul telah selesai dieksekusi hari ini (30 Okt 2026). Detail di [`docs/todos.md`](docs/todos.md).
 
 ---
 
