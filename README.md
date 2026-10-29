@@ -26,20 +26,20 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 
 ## Fitur & Status Progres
 
-*Terakhir diperbarui: **30 Okt 2026** — perbarui setiap kali ada perubahan nyata.*
+*Terakhir diperbarui: **30 Okt 2026** — Seluruh perencanaan development dimajukan hari ini.*
 
 | Modul | Status | Keterangan |
 |---|---|---|
-| Landing page | ✅ Jadi | Selesai di Milestone 1 |
-| Resi Tracker (`/lacak`) | ✅ Jadi | Selesai di Milestone 1 (Linimasa 5 tahap & rincian hak) |
-| Peta Anomali (`/peta`) | ⬜ Segera | Wireframe & Rencana → Target M2 |
-| Lapor Pungli & Sanggah + Tiket | ⬜ Segera | Wireframe & Rencana → Target M2 |
-| Scorecard SLA | ⬜ Segera | Wireframe & Rencana → Target M2 |
-| Panel Admin | ⬜ Belum | Target M2 |
+| Landing page | ✅ Jadi | Selesai (Anti-slop, responsif, banner simulasi) |
+| Resi Tracker (`/lacak`) | ✅ Jadi | Selesai (Linimasa 5 tahap & rincian hak warga) |
+| Lapor Pungli & Sanggah + Tiket (`/lapor`, `/tiket`) | 🟡 Proses | Dimajukan hari ini: wizard lapor & tiket rahasia |
+| Peta Anomali (`/peta`) | 🟡 Proses | Dimajukan hari ini: GeoJSON lokal & deteksi red-flag |
+| Scorecard SLA (`/scorecard`) | 🟡 Proses | Dimajukan hari ini: kepatuhan respon 72 jam & 14 hari |
+| Panel Admin (`/admin`) | 🟡 Proses | Dimajukan hari ini: Filament 5 moderasi & audit |
 
-Legenda: ✅ Jadi · 🟡 Sebagian · ⬜ Belum (hanya wireframe/rencana)
+Legenda: ✅ Jadi · 🟡 Sedang dikembangkan hari ini · ⬜ Belum
 
-**Roadmap:** M1 First Draft (1 Nov) → M2 Penyisihan (11 Nov) → M3 Final Onsite (28 Nov). Detail di [`docs/todos.md`](docs/todos.md).
+**Roadmap:** Seluruh development dipercepat dieksekusi hari ini (30 Okt 2026). Detail di [`docs/todos.md`](docs/todos.md).
 
 ---
 

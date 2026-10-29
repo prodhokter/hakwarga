@@ -13,17 +13,19 @@
 | **MS** | M1 = 1 Nov · M2 = 11 Nov · M3 = 28 Nov · ∞ = rutin |
 | **Status** | ⬜ belum · 🟡 jalan · ✅ selesai · ⛔ terblokir |
 
-**Aturan:** M1 tidak boleh melebar. Segala yang tidak tercantum "M1" dijadwalkan setelah First Draft terkirim.
+**Aturan Khusus:** Seluruh perencanaan development di tanggal lain **DIMAJUKAN HARI INI (Jumat, 30 Okt 2026)** tanpa terkecuali. Seluruh modul A, B, C, D, admin, dan API dieksekusi secara penuh.
 
 ---
 
-## Cakupan Per Milestone (ringkas)
+## Cakupan Pengembangan (Semua Dimajukan Hari Ini: 30 Okt 2026)
 
-| MS | Harus ada saat dikumpulkan |
+| Komponen | Status Target |
 |---|---|
-| **M1** | Repo publik + README jujur · Landing + Resi Tracker jalan (data simulasi) · wireframe semua modul · PDF Drafter ≤ 10 hal / ≤ 10 MB dengan ≥ 2 screenshot |
-| **M2** | 4 modul + admin berfungsi · deploy · tes & audit a11y/performa · proposal ≤ 30 hal · surat bermaterai · video ≤ 5 mnt publik |
-| **M3** | Polesan & stabilitas · deck ≤ 15 slide · skrip 10 mnt + latihan · bank Q&A · cadangan offline |
+| **Fondasi & Modul A (Tracker)** | ✅ Selesai dieksekusi hari ini |
+| **Modul C (Lapor & Tiket Rahasia)** | 🟡 Sedang dieksekusi hari ini |
+| **Modul B (Peta Anomali & Choropleth)** | 🟡 Sedang dieksekusi hari ini |
+| **Modul D (Scorecard SLA Instansi)** | 🟡 Sedang dieksekusi hari ini |
+| **Panel Admin (Filament 5) & API v1** | 🟡 Sedang dieksekusi hari ini |
 
 ---
 

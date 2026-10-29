@@ -7,17 +7,19 @@
 
 ## 1. Status Saat Ini
 
+> **Percepatan Proyek:** Seluruh perencanaan development di tanggal lain dimajukan hari ini (**Jum 30 Okt 2026**).
+
 | Area | Status | Catatan |
 |---|---|---|
 | Konsep & paket dokumen | ✅ v0.1 | Dibuat 30 Okt |
 | Repo + scaffold Laravel | ✅ | Selesai B-001 s.d. B-003 |
 | Landing page | ✅ | Selesai B-106, B-107 |
-| Resi Tracker | ✅ | Selesai B-201 s.d. B-206 |
+| Resi Tracker (Modul A) | ✅ | Selesai B-201 s.d. B-207 |
 | Wireframe & UI System | ✅ | Selesai (Anti-slop Tailwind v4) |
-| Peta Anomali | ⬜ | Rencana M2 |
-| Lapor & Tiket | ⬜ | Rencana M2 |
-| Scorecard SLA | ⬜ | Rencana M2 |
-| Admin (Filament) | ⬜ | Rencana M2 |
+| Lapor & Tiket (Modul C) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
+| Peta Anomali (Modul B) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
+| Scorecard SLA (Modul D) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
+| Admin (Filament) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | PDF First Draft | 🟡 | B-902 dalam penyusunan |
 
 Legenda: ⬜ belum · 🟡 berjalan · ✅ selesai · ⛔ terblokir
