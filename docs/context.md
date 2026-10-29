@@ -16,8 +16,8 @@
 | Landing page | ✅ | Selesai B-106, B-107 |
 | Resi Tracker (Modul A) | ✅ | Selesai B-201 s.d. B-207 |
 | Lapor & Tiket (Modul C) | ✅ | Selesai B-401 s.d. B-410 |
+| Peta Anomali (Modul B) | ✅ | Selesai B-301 s.d. B-312 |
 | Wireframe & UI System | ✅ | Selesai (Anti-slop Tailwind v4) |
-| Peta Anomali (Modul B) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | Scorecard SLA (Modul D) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | Admin (Filament) | 🟡 | Dimajukan hari ini (sedang dikembangkan) |
 | PDF First Draft | 🟡 | B-902 dalam penyusunan |

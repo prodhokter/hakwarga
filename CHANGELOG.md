@@ -11,6 +11,15 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ## [Unreleased]
 
 ### Added
+- **Modul B: Peta Anomali & Deteksi Red-Flag (`/peta`, `/api/v1/map/choropleth`):**
+  - View analitik PostgreSQL 16 `v_anomaly_scores` dengan CTE kalkulasi rasio penerima terhadap estimasi kemiskinan dan fungsi jendela `percentile_cont(0.5)`.
+  - PHP Backed Enum: `AnomalyFlag` (`under_coverage`, `over_coverage`, `normal`).
+  - Layanan `App\Services\AnomalyService`: klasifikasi rasio alokasi terhadap batas ambang dinamis (`config/hakwarga.php`) dan penentuan tingkat keparahan (severity).
+  - Endpoint API Choropleth `/api/v1/map/choropleth` dengan caching GeoJSON berversi.
+  - Halaman interaktif Peta Anomali (`/peta`) dengan strip metrik ringkasan (wilayah terpantau, potensi defisit, potensi surplus, alokasi normal).
+  - Komponen aksesibel Tabel Red-Flag Wilayah (alternatif penuh yang ramah pembaca layar).
+  - Dataset GeoJSON statis mandiri di `public/geo/central_java.geojson`.
+  - Seeder data riil kemiskinan BPS dan kuota bansos untuk wilayah pilot Jawa Tengah (Banyumas, Cilacap, Purbalingga, Banjarnegara, Kebumen).
 - **Modul C: Kanal Lapor Pungli, Sanggah Bansos & Tiket Rahasia (`/lapor`, `/tiket`):**
   - Migrasi database tabel `reports`, `report_updates`, dan `report_attachments` dengan proteksi integritas FK cascade.
   - PHP Backed Enums: `ReportType`, `ReportStatus`, `ExtortionCategory`, `DisputeCategory`.

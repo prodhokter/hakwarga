@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TrackerController;
@@ -33,11 +34,7 @@ Route::prefix('tiket')->name('ticket.')->group(function () {
     Route::post('/{ticket}/tanggapan', [TicketController::class, 'reply'])->name('reply');
 });
 
-Route::get('/peta', fn () => view('pages.coming-soon', [
-    'title' => 'Peta Anomali Bansos',
-    'module' => 'Peta Interaktif',
-    'description' => 'Eksplorasi rasio alokasi bantuan sosial per wilayah berbasis perbandingan kuota dan estimasi penduduk miskin resmi BPS.',
-]))->name('map.index');
+Route::get('/peta', [MapController::class, 'index'])->name('map.index');
 
 Route::get('/scorecard', fn () => view('pages.coming-soon', [
     'title' => 'Scorecard SLA Instansi',

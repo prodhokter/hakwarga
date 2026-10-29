@@ -33,7 +33,7 @@ Karya tim **`<NamaTim>`** untuk *Multimedia In Action (MIA) 2026 — Web In Acti
 | Landing page | ✅ Jadi | Selesai (Anti-slop, responsif, banner simulasi) |
 | Resi Tracker (`/lacak`) | ✅ Jadi | Selesai (Linimasa 5 tahap & rincian hak warga) |
 | Lapor Pungli & Sanggah + Tiket (`/lapor`, `/tiket`) | ✅ Jadi | Selesai (100% anonim, tiket rahasia, audit trail) |
-| Peta Anomali (`/peta`) | 🟡 Proses | Dimajukan hari ini: GeoJSON lokal & deteksi red-flag |
+| Peta Anomali (`/peta`) | ✅ Jadi | Selesai (View analitik SQL, rasio BPS, tabel red-flag) |
 | Scorecard SLA (`/scorecard`) | 🟡 Proses | Dimajukan hari ini: kepatuhan respon 72 jam & 14 hari |
 | Panel Admin (`/admin`) | 🟡 Proses | Dimajukan hari ini: Filament 5 moderasi & audit |
 

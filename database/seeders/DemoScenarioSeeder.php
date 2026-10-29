@@ -9,8 +9,10 @@ use App\Enums\EligibilityStatus;
 use App\Enums\RegionLevel;
 use App\Enums\ShipmentStatus;
 use App\Models\Agency;
+use App\Models\AidAllocation;
 use App\Models\AidProgram;
 use App\Models\Beneficiary;
+use App\Models\PovertyStat;
 use App\Models\Region;
 use App\Models\Shipment;
 use App\Models\ShipmentEvent;
@@ -21,7 +23,7 @@ class DemoScenarioSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Hierarchical Pilot Regions
+        // 1. Hierarchical Pilot Regions & Central Java Regencies
         $jateng = Region::firstOrCreate(
             ['bps_code' => '33'],
             [
@@ -39,6 +41,50 @@ class DemoScenarioSeeder extends Seeder
                 'level' => RegionLevel::Regency,
                 'parent_id' => $jateng->id,
                 'population' => 1800000,
+                'is_pilot' => true,
+            ]
+        );
+
+        $cilacap = Region::firstOrCreate(
+            ['bps_code' => '3301'],
+            [
+                'name' => 'Kabupaten Cilacap',
+                'level' => RegionLevel::Regency,
+                'parent_id' => $jateng->id,
+                'population' => 1950000,
+                'is_pilot' => false,
+            ]
+        );
+
+        $purbalingga = Region::firstOrCreate(
+            ['bps_code' => '3303'],
+            [
+                'name' => 'Kabupaten Purbalingga',
+                'level' => RegionLevel::Regency,
+                'parent_id' => $jateng->id,
+                'population' => 1020000,
+                'is_pilot' => false,
+            ]
+        );
+
+        $banjarnegara = Region::firstOrCreate(
+            ['bps_code' => '3304'],
+            [
+                'name' => 'Kabupaten Banjarnegara',
+                'level' => RegionLevel::Regency,
+                'parent_id' => $jateng->id,
+                'population' => 1030000,
+                'is_pilot' => false,
+            ]
+        );
+
+        $kebumen = Region::firstOrCreate(
+            ['bps_code' => '3305'],
+            [
+                'name' => 'Kabupaten Kebumen',
+                'level' => RegionLevel::Regency,
+                'parent_id' => $jateng->id,
+                'population' => 1380000,
                 'is_pilot' => false,
             ]
         );
@@ -65,7 +111,29 @@ class DemoScenarioSeeder extends Seeder
             ]
         );
 
-        // 2. Agencies
+        // 2. Poverty Stats (BPS Riil)
+        PovertyStat::updateOrCreate(
+            ['region_id' => $banyumas->id, 'year' => 2026],
+            ['poverty_percent' => 12.84, 'poor_population' => 231120, 'source' => 'BPS Kabupaten Banyumas 2026']
+        );
+        PovertyStat::updateOrCreate(
+            ['region_id' => $cilacap->id, 'year' => 2026],
+            ['poverty_percent' => 11.02, 'poor_population' => 214890, 'source' => 'BPS Kabupaten Cilacap 2026']
+        );
+        PovertyStat::updateOrCreate(
+            ['region_id' => $purbalingga->id, 'year' => 2026],
+            ['poverty_percent' => 15.30, 'poor_population' => 156060, 'source' => 'BPS Kabupaten Purbalingga 2026']
+        );
+        PovertyStat::updateOrCreate(
+            ['region_id' => $banjarnegara->id, 'year' => 2026],
+            ['poverty_percent' => 15.20, 'poor_population' => 156560, 'source' => 'BPS Kabupaten Banjarnegara 2026']
+        );
+        PovertyStat::updateOrCreate(
+            ['region_id' => $kebumen->id, 'year' => 2026],
+            ['poverty_percent' => 16.34, 'poor_population' => 225492, 'source' => 'BPS Kabupaten Kebumen 2026']
+        );
+
+        // 3. Agencies
         $dinsos = Agency::firstOrCreate(
             ['slug' => 'dinsos-banyumas'],
             [
@@ -86,7 +154,7 @@ class DemoScenarioSeeder extends Seeder
             ]
         );
 
-        // 3. Aid Programs
+        // 4. Aid Programs
         $pkh = AidProgram::firstOrCreate(
             ['code' => 'PKH'],
             [
@@ -113,7 +181,29 @@ class DemoScenarioSeeder extends Seeder
             ]
         );
 
-        // 4. Beneficiaries (Masked Simulation Data)
+        // 5. Aid Allocations (for Anomaly Calculation)
+        AidAllocation::updateOrCreate(
+            ['region_id' => $banyumas->id, 'program_id' => $pkh->id, 'period' => '2026-10'],
+            ['quota_recipients' => 30000, 'actual_recipients' => 29500, 'budget' => 22500000000, 'is_simulated' => true]
+        );
+        AidAllocation::updateOrCreate(
+            ['region_id' => $cilacap->id, 'program_id' => $pkh->id, 'period' => '2026-10'],
+            ['quota_recipients' => 12000, 'actual_recipients' => 11800, 'budget' => 9000000000, 'is_simulated' => true]
+        );
+        AidAllocation::updateOrCreate(
+            ['region_id' => $purbalingga->id, 'program_id' => $pkh->id, 'period' => '2026-10'],
+            ['quota_recipients' => 45000, 'actual_recipients' => 44200, 'budget' => 33750000000, 'is_simulated' => true]
+        );
+        AidAllocation::updateOrCreate(
+            ['region_id' => $banjarnegara->id, 'program_id' => $pkh->id, 'period' => '2026-10'],
+            ['quota_recipients' => 20500, 'actual_recipients' => 20000, 'budget' => 15375000000, 'is_simulated' => true]
+        );
+        AidAllocation::updateOrCreate(
+            ['region_id' => $kebumen->id, 'program_id' => $pkh->id, 'period' => '2026-10'],
+            ['quota_recipients' => 29000, 'actual_recipients' => 28500, 'budget' => 21750000000, 'is_simulated' => true]
+        );
+
+        // 6. Beneficiaries (Masked Simulation Data)
         /** @var string $pepper */
         $pepper = config('hakwarga.nik_pepper', 'simulated-pepper');
 
@@ -156,7 +246,7 @@ class DemoScenarioSeeder extends Seeder
             ]
         );
 
-        // 5. Gold Demo Shipment 1: In Delivery (Step 4 of 5)
+        // 7. Gold Demo Shipment 1: In Delivery (Step 4 of 5)
         $ship1 = Shipment::updateOrCreate(
             ['receipt_code' => 'HWR-PKH-2610-DEMO01'],
             [
@@ -217,7 +307,7 @@ class DemoScenarioSeeder extends Seeder
             ],
         ]);
 
-        // 6. Gold Demo Shipment 2: Scheduled (Step 3 of 5)
+        // 8. Gold Demo Shipment 2: Scheduled (Step 3 of 5)
         $ship2 = Shipment::updateOrCreate(
             ['receipt_code' => 'HWR-BPNT-2610-DEMO02'],
             [
@@ -268,7 +358,7 @@ class DemoScenarioSeeder extends Seeder
             ],
         ]);
 
-        // 7. Gold Demo Shipment 3: Received at Point (Step 5 of 5)
+        // 9. Gold Demo Shipment 3: Received at Point (Step 5 of 5)
         $ship3 = Shipment::updateOrCreate(
             ['receipt_code' => 'HWR-PKH-2610-DEMO03'],
             [
