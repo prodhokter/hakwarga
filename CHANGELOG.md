@@ -12,6 +12,21 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [1.0.0] - 2026-10-30
+
+### Added
+- **Open Graph Image & Web Assets Lengkap:**
+  - Halaman dedicated `/og-image` (route + Blade view) berukuran tepat 1200×630px dengan layout 2-kolom: panel gelap kiri (logo + 4 modul) dan konten kanan (headline, subline, 3 statistik kunci).
+  - Screenshot otomatis via Playwright → `public/og-image.png` (resolusi 1200×630, siap social sharing).
+  - Update meta OG: `og:image` → PNG beresolusi nyata, ditambah `og:image:width`, `og:image:height`, `og:image:type`, `og:image:alt`, `og:site_name`, `og:locale`.
+  - Update meta Twitter: `twitter:image` → PNG, tambahan `twitter:image:alt`.
+  - `meta name="theme-color"` dan `meta name="msapplication-TileColor"` keduanya `#0f172a`.
+  - Kit web assets `logo-symbol-*` (black, white, mono, square, favicon, app-icon) dalam format SVG + PNG (32/64/128/192/512px) via `export_variants.py`.
+  - `public/logo.svg` — horizontal lockup HakWarga (simbol + wordmark + badge PUBLIK).
+  - Pemeliharaan 48 Pest tests (303 assertions) 100% hijau.
+
+---
+
 ## [0.9.0] - 2026-10-30
 
 ### Added

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width="460" height="120">
+    <title>HakWarga</title>
+    <!-- Concept A Symbol -->
+    <g transform="translate(10, 10) scale(0.39)">
+        <path fill="#0f172a" fill-rule="evenodd" d="M48 52C48 45.4 53.4 40 60 40H84C90.6 40 96 45.4 96 52V104H160V52C160 45.4 165.4 40 172 40H196C202.6 40 208 45.4 208 52V204C208 210.6 202.6 216 196 216H172C165.4 216 160 210.6 160 204V152H96V204C96 210.6 90.6 216 84 216H60C53.4 216 48 210.6 48 204V52ZM128 114A14 14 0 1 0 128 142A14 14 0 1 0 128 114Z"/>
+    </g>
+    <!-- Brand Name "HakWarga" Wordmark -->
+    <text x="125" y="72" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="38" font-weight="800" fill="#0f172a" letter-spacing="-1">HakWarga</text>
+    <rect x="330" y="44" width="76" height="24" rx="12" fill="#e6ff94"/>
+    <text x="345" y="60" font-family="'Geist Mono', monospace" font-size="11" font-weight="700" fill="#0f172a">PUBLIK</text>
+</svg>

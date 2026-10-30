@@ -12,14 +12,24 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
     <meta property="og:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
-    <meta property="og:image" content="{{ asset('og-image.svg') }}">
+    <meta property="og:image" content="{{ asset('og-image.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="HakWarga - Platform Transparansi Bantuan Sosial Indonesia">
+    <meta property="og:site_name" content="HakWarga">
+    <meta property="og:locale" content="id_ID">
 
     {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
     <meta name="twitter:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
-    <meta name="twitter:image" content="{{ asset('og-image.svg') }}">
+    <meta name="twitter:image" content="{{ asset('og-image.png') }}">
+    <meta name="twitter:image:alt" content="HakWarga - Platform Transparansi Bantuan Sosial Indonesia">
+
+    <meta name="theme-color" content="#0f172a">
+    <meta name="msapplication-TileColor" content="#0f172a">
 
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">

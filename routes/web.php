@@ -46,3 +46,5 @@ Route::get('/data', [ScorecardController::class, 'data'])->name('data.index');
 Route::get('/data/unduh/{dataset}', [ScorecardController::class, 'export'])->name('data.export');
 
 Route::get('/tentang', fn () => view('pages.about'))->name('about');
+
+Route::get('/og-image', fn () => view('og-image'))->name('og-image');
