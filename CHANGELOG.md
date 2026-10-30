@@ -12,6 +12,19 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.8.0] - 2026-10-30
+
+### Added
+- **Penerapan Logo Resmi Opsi A (Pillar of Rights) & Perbaikan Reaktivitas:**
+  - Integrasi master logo Konsep A dan web icon kit ke `public/`: `logo-symbol.svg`, `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, dan `site.webmanifest`.
+  - Pemasangan pustaka `alpinejs` ke `package.json` dan inisialisasi di `resources/js/app.js` untuk pemulihan seluruh interaktivitas reaktif (collapse sidebar desktop, mobile drawer, floating dock expand).
+  - Penambahan aturan CSS `[x-cloak] { display: none !important; }` di `resources/css/app.css` untuk mencegah kebocoran elemen overlay tersembunyi pada saat inisialisasi peramban.
+  - Perbaikan tuntas fungsi buka-tutup sidebar desktop via tombol toggle SVG panel dan sinkronisasi status ke `localStorage`.
+  - Pembersihan total glitch teks `Data SimulasiDS` (Image #10) dan ikon silang ganda (Image #8).
+  - Pemeliharaan penuh 48 Pest tests (305 assertions) 100% hijau, Pint format bersih, dan Larastan Level 5 bersih.
+
+---
+
 ## [0.7.0] - 2026-10-30
 
 ### Added
