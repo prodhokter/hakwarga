@@ -9,8 +9,8 @@ RUN npm run build
 # Stage 2: Install PHP Composer Dependencies
 FROM composer:2 AS vendor
 WORKDIR /app
-COPY composer*.json ./
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-scripts --ignore-platform-reqs
 
 # Stage 3: Production FrankenPHP Server
 FROM dunglas/frankenphp:1-php8.3-alpine
