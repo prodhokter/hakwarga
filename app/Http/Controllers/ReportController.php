@@ -27,12 +27,13 @@ class ReportController extends Controller
         return view('reports.choose');
     }
 
-    public function createExtortion(): View
+    public function createExtortion(Request $request): View
     {
         $regions = Region::orderBy('name')->get(['id', 'name', 'bps_code', 'level']);
         $categories = ExtortionCategory::cases();
+        $prefillResi = $request->query('resi');
 
-        return view('reports.extortion-create', compact('regions', 'categories'));
+        return view('reports.extortion-create', compact('regions', 'categories', 'prefillResi'));
     }
 
     public function storeExtortion(

@@ -14,6 +14,12 @@
     --color-brand-800: #115e59;
     --color-brand-900: #134e4a;
 
+    --color-accent-50: #fffbeb;
+    --color-accent-100: #fef3c7;
+    --color-accent-500: #f59e0b;
+    --color-accent-600: #d97706;
+    --color-accent-700: #b45309;
+
     --color-ink: #0f172a;
     --color-ink-muted: #475569;
     --color-line: #e2e8f0;
@@ -21,9 +27,9 @@
     --color-canvas: #f8fafc;
 
     --color-info: #1d4ed8;
-    --color-success: #15803d;
-    --color-warning: #b45309;
-    --color-danger: #b91c1c;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
 
     --color-sim-bg: #fef3c7;
     --color-sim-fg: #78350f;
@@ -40,7 +46,58 @@
         -webkit-font-smoothing: antialiased;
     }
 
+    .dark body {
+        color: #f1f5f9;
+        background-color: #020617;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-display);
+        letter-spacing: -0.025em;
+    }
+
+    .tabular-nums {
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+@layer components {
+    .hw-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dark .hw-card {
+        background-color: #0f172a;
+        border-color: #1e293b;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .hw-card:hover {
+        box-shadow: 0 4px 12px 0 rgba(15, 23, 42, 0.06);
+    }
+
+    .dark .hw-card:hover {
+        box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Print Stylesheet for Kartu Hak */
+@media print {
+    header, footer, .print\:hidden, #main-content a[href="#main-content"] {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    .hw-card, .border {
+        border-color: #cbd5e1 !important;
+        box-shadow: none !important;
     }
 }

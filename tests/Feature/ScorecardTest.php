@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Enums\AgencyType;
+use App\Models\Agency;
+use App\Models\Region;
 use Database\Seeders\DemoScenarioSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -53,6 +56,21 @@ test('data export streams valid CSV for SLA and anomaly datasets', function () {
     $anomalyResponse = $this->get(route('data.export', ['dataset' => 'anomali']));
     $anomalyResponse->assertStatus(200)
         ->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
+});
+
+test('data export sanitizes csv formula injection characters', function () {
+    Agency::create([
+        'name' => '=2+5',
+        'slug' => 'calc-agency',
+        'type' => AgencyType::Distributor,
+        'region_id' => Region::firstOrFail()->id,
+        'is_simulated' => true,
+    ]);
+
+    $response = $this->get(route('data.export', ['dataset' => 'sla']));
+    $response->assertStatus(200);
+
+    expect(str_contains((string) $response->streamedContent(), "'=2+5"))->toBeTrue();
 });
 
 test('api scorecard endpoint returns JSON list of ranked agencies', function () {

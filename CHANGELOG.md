@@ -10,17 +10,21 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ## [Unreleased]
 
-### Added
-- **Peningkatan UI/UX & Interaktivitas Visual (Anti-Slop):**
-  - Integrasi MapLibre GL JS (`resources/js/map.js`) pada halaman `/peta`: render poligon GeoJSON offline tanpa ketergantungan API eksternal, hover highlight, interaktif popup kalkulasi rasio, dan tombol penapis status anomali.
-  - Integrasi Chart.js (`resources/js/charts.js`): visual benchmark komparasi respon vs penyelesaian SLA instansi dan diagram proporsi anomali donat.
-  - Pemisahan bundel JavaScript (lazy loading): `app.js` tetap ringan (hanya 22 kB gzip), `map.js` dan `charts.js` hanya dimuat pada halaman relevan.
-  - Tombol aksi "Cetak Kartu Hak" berformat cetak ramah kertas (`@media print`) pada halaman rincian resi `/lacak/{receipt}`.
-  - Tombol interaktif "Salin Nomor Tiket" dan "Salin Kode Rahasia" dengan umpan balik visual instan di halaman sukses lapor `/lapor/sukses`.
-  - Halaman galat kustom berbahasa Indonesia yang bersahabat: `404` (Tidak Ditemukan), `419` (Sesi Kedaluwarsa), `429` (Terlalu Banyak Permintaan), `500` (Kendala Teknis).
-  - Pembaruan navigasi desktop & mobile: tautan seluruh 4 modul kini aktif penuh tanpa label tunda.
-
 ---
+
+## [0.3.0] - 2026-10-30
+
+### Added
+- **Total Frontend Redesign & Enhanced Interactivity (Anti-Slop):**
+  - **Hero Desktop 2-Kolom Beranda:** Kolom kiri interaktif dengan pencarian resi validasi format langsung; kolom kanan menampilkan pratinjau produk hidup (*live animated 5-stage timeline*) berputar otomatis dengan jeda saat hover/fokus.
+  - **Peta Anomali Dua Arah (MapLibre GL JS):** FitBounds otomatis ke 5 kabupaten pilot Jawa Tengah, interaksi dua arah (klik poligon menyorot baris tabel/kartu dan sebaliknya), segmented control filter tersinkronisasi ke peta, kartu, tabel, dan donut chart.
+  - **Lapor Pungli Multi-step Wizard:** Stepper 3 tahap interaktif, auto prefill nomor resi dari pelacak, penyimpanan draf di `sessionStorage`, dan indikator privasi 100% anonim.
+  - **Keterbukaan Data Publik & Kalkulator Interaktif:** Pratinjau 5 baris pertama data dalam tabel, kamus kolom data lengkap, serta dua kalkulator rumus interaktif (Kalkulator Anomali & Kalkulator Kepatuhan SLA).
+  - **Scorecard SLA Interaktif:** Garis target kepatuhan 100% putus-putus pada grafik benchmark Chart.js, filter tipe instansi, pengurutan kolom, dan baris detail expand transparan rumus skor.
+  - **Design System & Dark Mode:** Palet warna deep teal berkarakter, fluid typography, angka tabular (`tabular-nums`), layered cards, dan tombol toggle mode gelap tersimpan di `localStorage`.
+  - **Keamanan CSV:** Sanitasi pencegahan serangan CSV Formula Injection pada seluruh ekspor data publik.
+  - **Audit & Kepatuhan Keamanan:** Laporan audit komprehensif 6 pilar di `docs/AUDIT.md` dan `docs/AUDIT-SECURITY.md`.
+  - **Pengujian & Kualitas:** 48 Pest tests (305 assertions) 100% hijau, Pint PSR-12 bersih, Larastan Level 5 bersih, bebas em dash (`—`).
 
 ## [0.2.0] - 2026-10-30
 

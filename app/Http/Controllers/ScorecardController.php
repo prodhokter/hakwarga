@@ -35,9 +35,22 @@ class ScorecardController extends Controller
         return view('scorecard.show', compact('agency', 'details', 'reports'));
     }
 
-    public function data(): View
+    public function data(SlaScoreService $slaService, AnomalyService $anomalyService): View
     {
-        return view('pages.data');
+        $slaPreview = $slaService->getAgencyScorecard()->take(5);
+        $anomaliPreview = $anomalyService->getAnomalies('2026-10')->take(5);
+
+        return view('pages.data', compact('slaPreview', 'anomaliPreview'));
+    }
+
+    protected function sanitizeCsv(mixed $value): string
+    {
+        $str = (string) $value;
+        if ($str !== '' && in_array($str[0], ['=', '+', '-', '@'], true)) {
+            return "'".$str;
+        }
+
+        return $str;
     }
 
     public function export(
@@ -49,7 +62,7 @@ class ScorecardController extends Controller
             $scorecard = $slaService->getAgencyScorecard();
 
             $headers = [
-                'Content-Type' => 'text/csv',
+                'Content-Type' => 'text/csv; charset=UTF-8',
                 'Content-Disposition' => 'attachment; filename="hakwarga_scorecard_sla_'.date('Ymd').'.csv"',
             ];
 
@@ -58,19 +71,21 @@ class ScorecardController extends Controller
                 if ($handle === false) {
                     return;
                 }
+                // UTF-8 BOM for Microsoft Excel compatibility
+                fprintf($handle, chr(0xEF).chr(0xBB).chr(0xBF));
                 fputcsv($handle, ['Instansi', 'Wilayah', 'Tipe', 'Total Aduan', 'Aduan Jatuh Tempo', 'Respon Tepat Waktu (%)', 'Penyelesaian Tepat Waktu (%)', 'Skor Akhir', 'Peringkat']);
 
                 foreach ($scorecard as $row) {
                     fputcsv($handle, [
-                        $row['agency_name'],
-                        $row['region_name'],
-                        $row['agency_type'],
-                        $row['total_reports'],
-                        $row['due_response_count'],
-                        $row['response_rate'].'%',
-                        $row['resolve_rate'].'%',
-                        $row['final_score'],
-                        $row['grade'],
+                        $this->sanitizeCsv($row['agency_name']),
+                        $this->sanitizeCsv($row['region_name']),
+                        $this->sanitizeCsv($row['agency_type']),
+                        $this->sanitizeCsv($row['total_reports']),
+                        $this->sanitizeCsv($row['due_response_count']),
+                        $this->sanitizeCsv($row['response_rate'].'%'),
+                        $this->sanitizeCsv($row['resolve_rate'].'%'),
+                        $this->sanitizeCsv($row['final_score']),
+                        $this->sanitizeCsv($row['grade']),
                     ]);
                 }
                 fclose($handle);
@@ -81,7 +96,7 @@ class ScorecardController extends Controller
             $anomalies = $anomalyService->getAnomalies('2026-10');
 
             $headers = [
-                'Content-Type' => 'text/csv',
+                'Content-Type' => 'text/csv; charset=UTF-8',
                 'Content-Disposition' => 'attachment; filename="hakwarga_anomali_bansos_'.date('Ymd').'.csv"',
             ];
 
@@ -90,20 +105,22 @@ class ScorecardController extends Controller
                 if ($handle === false) {
                     return;
                 }
+                // UTF-8 BOM for Microsoft Excel compatibility
+                fprintf($handle, chr(0xEF).chr(0xBB).chr(0xBF));
                 fputcsv($handle, ['Kode BPS', 'Wilayah', 'Program', 'Periode', 'Kuota Penerima', 'Estimasi Miskin', 'Rasio Sasaran', 'Median Rasio', 'Rasio Relatif', 'Indikator']);
 
                 foreach ($anomalies as $row) {
                     fputcsv($handle, [
-                        $row->bps_code,
-                        $row->region_name,
-                        $row->program_code,
-                        $row->period,
-                        $row->quota_recipients,
-                        (int) $row->poor_estimate,
-                        round((float) $row->targeting_ratio, 3),
-                        round((float) $row->median_ratio, 3),
-                        round((float) $row->relative_ratio, 2).'x',
-                        $row->flag->label(),
+                        $this->sanitizeCsv($row->bps_code),
+                        $this->sanitizeCsv($row->region_name),
+                        $this->sanitizeCsv($row->program_code),
+                        $this->sanitizeCsv($row->period),
+                        $this->sanitizeCsv($row->quota_recipients),
+                        $this->sanitizeCsv((int) $row->poor_estimate),
+                        $this->sanitizeCsv(round((float) $row->targeting_ratio, 3)),
+                        $this->sanitizeCsv(round((float) $row->median_ratio, 3)),
+                        $this->sanitizeCsv(round((float) $row->relative_ratio, 2).'x'),
+                        $this->sanitizeCsv($row->flag->label()),
                     ]);
                 }
                 fclose($handle);
