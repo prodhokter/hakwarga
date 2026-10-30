@@ -20,21 +20,21 @@
             <span class="text-[10px] text-slate-400">Wilayah Pilot</span>
         </div>
 
-        <div class="starline-card p-4 border-l-4 border-l-amber-500">
-            <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider block">Potensi Defisit (Under-Coverage)</span>
-            <div class="text-2xl font-bold font-mono text-amber-900 mt-1 tabular-nums">{{ $underCount }}</div>
+        <div class="starline-card p-4">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Potensi Defisit (Under-Coverage)</span>
+            <div class="text-2xl font-bold font-mono text-slate-900 mt-1 tabular-nums">{{ $underCount }}</div>
             <span class="text-[10px] text-slate-400">Defisit Kuota</span>
         </div>
 
-        <div class="starline-card p-4 border-l-4 border-l-indigo-500">
-            <span class="text-[11px] font-bold text-indigo-800 uppercase tracking-wider block">Potensi Kelebihan Kuota (Over-Coverage)</span>
-            <div class="text-2xl font-bold font-mono text-indigo-900 mt-1 tabular-nums">{{ $overCount }}</div>
+        <div class="starline-card p-4">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Potensi Kelebihan Kuota (Over-Coverage)</span>
+            <div class="text-2xl font-bold font-mono text-slate-900 mt-1 tabular-nums">{{ $overCount }}</div>
             <span class="text-[10px] text-slate-400">Surplus Kuota</span>
         </div>
 
-        <div class="starline-card p-4 border-l-4 border-l-emerald-500">
-            <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">Alokasi Proporsional</span>
-            <div class="text-2xl font-bold font-mono text-emerald-800 mt-1 tabular-nums">{{ $normalCount }}</div>
+        <div class="starline-card p-4">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Alokasi Proporsional</span>
+            <div class="text-2xl font-bold font-mono text-slate-900 mt-1 tabular-nums">{{ $normalCount }}</div>
             <span class="text-[10px] text-slate-400">Normal</span>
         </div>
     </div>
@@ -127,16 +127,9 @@
         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">Daftar Wilayah</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             @foreach($anomalies as $anomaly)
-                @php
-                    $cardBorder = match($anomaly->flag->value) {
-                        'under_coverage' => 'border-amber-400 bg-amber-50/30',
-                        'over_coverage' => 'border-indigo-400 bg-indigo-50/30',
-                        default => 'border-slate-200 bg-white',
-                    };
-                @endphp
                 <div id="region-card-{{ $anomaly->bps_code }}"
                      data-flag="{{ $anomaly->flag->value }}"
-                     class="hw-region-item starline-card p-3.5 flex flex-col justify-between space-y-2.5 {{ $cardBorder }} cursor-pointer hover:border-slate-900 transition-all"
+                     class="hw-region-item starline-card p-3.5 flex flex-col justify-between space-y-2.5 border-slate-200 bg-white cursor-pointer hover:border-slate-900 transition-all"
                      onclick="if (window.hwFocusRegion) window.hwFocusRegion('{{ $anomaly->bps_code }}')">
                     <div>
                         <div class="flex items-center justify-between">

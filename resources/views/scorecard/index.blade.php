@@ -47,18 +47,18 @@
         </div>
 
         @if($bestAgency)
-        <div class="starline-card p-4 border-l-4 border-l-emerald-500">
-            <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">Peringkat 1</span>
+        <div class="starline-card p-4">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Peringkat 1</span>
             <div class="text-sm font-bold text-slate-900 mt-1 line-clamp-1 font-display">{{ $bestAgency['agency_name'] }}</div>
-            <span class="text-[10px] font-mono text-emerald-700 font-semibold">Skor: {{ $bestAgency['final_score'] }} (Nilai {{ $bestAgency['grade'] }})</span>
+            <span class="text-[10px] font-mono text-slate-600 font-semibold">Skor: {{ $bestAgency['final_score'] }} (Nilai {{ $bestAgency['grade'] }})</span>
         </div>
         @endif
 
         @if($attentionAgency)
-        <div class="starline-card p-4 border-l-4 border-l-amber-500">
-            <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider block">Perlu Perhatian</span>
+        <div class="starline-card p-4">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Perlu Perhatian</span>
             <div class="text-sm font-bold text-slate-900 mt-1 line-clamp-1 font-display">{{ $attentionAgency['agency_name'] }}</div>
-            <span class="text-[10px] font-mono text-amber-700 font-semibold">Respon: {{ $attentionAgency['response_rate'] }}%</span>
+            <span class="text-[10px] font-mono text-slate-600 font-semibold">Respon: {{ $attentionAgency['response_rate'] }}%</span>
         </div>
         @endif
     </div>

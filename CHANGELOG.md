@@ -12,6 +12,19 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.6.0] - 2026-10-30
+
+### Added
+- **Pembersihan Total Pola AI Slop (Border Stripe Kiri & Dot Badges):**
+  - Penghapusan seluruh border stripe berwarna pada sisi kiri kartu (`border-l-4`, `border-l-2`) di halaman Scorecard, Peta Anomali, dan seluruh tampilan sistem (mengacu Image #5, #6, #7).
+  - Pembaruan aturan anti-slop resmi di `CLAUDE.md`, `AGENTS.md`, `DESIGN.md`, dan `docs/design.md` yang melarang keras penggunaan border stripe berwarna di sisi kiri kartu dan dot badge dekoratif.
+  - Penghapusan footer secara menyeluruh (tanpa footer publik pada tata letak aplikasi).
+  - Penghapusan tombol tautan `/admin` dari navigasi sidebar antarmuka pengguna publik.
+  - Peningkatan fungsionalitas dan kepadatan informasi halaman Beranda (`/`) menjadi command center data mandiri (live anomaly preview, live SLA ranking, fast search resi).
+  - Kepatuhan penuh pengujian 48 Pest tests (305 assertions) 100% hijau, Pint format bersih, dan Larastan Level 5 bersih.
+
+---
+
 ## [0.5.0] - 2026-10-30
 
 ### Added

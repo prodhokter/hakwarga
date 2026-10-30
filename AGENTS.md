@@ -75,7 +75,15 @@ Ringkasan (rinci: `docs/structure.md` §4):
 
 ## 7. Desain Anti-Slop, Performa & Aksesibilitas
 
-- **Wajib Anti-Slop:** Setiap agent/kontributor yang mengerjakan frontend & UI **wajib mengaktifkan skill antislop** (`antislop`, `antislop-ui`, `antislop-copywriting`, `antislop-human`, `antislop-layoutmobile`). Dilarang keras menghasilkan "AI slop" (sparkle berlebih, gradient ungu/pink klise, metrik palsu tanpa dasar, copy robotik, border glow berlebihan). Desain harus bersih, fungsional, berwibawa, dan membumi untuk warga.
+- **Wajib Anti-Slop:** Setiap agent/kontributor yang mengerjakan frontend & UI **wajib mengaktifkan skill antislop** (`antislop`, `antislop-ui`, `antislop-copywriting`, `antislop-human`, `antislop-layoutmobile`). Dilarang keras menghasilkan "AI slop" (sparkle berlebih, gradient ungu/pink klise, metrik palsu tanpa dasar, copy robotik, border glow berlebihan).
+- **Larangan Khusus Anti-AI-Slop:**
+  - Dilarang membuat border stripe berwarna di sisi kiri kartu/elemen (`border-l-*` dekoratif).
+  - Dilarang membuat pill badge dengan dot hijau/kuning dekoratif di atas heading.
+  - Teks wajib ringkas (1-2 kata per frasa), tanpa bertele-tele.
+  - Dilarang menggunakan topbar konvensional; gunakan collapsible sidebar.
+  - Bebas dari em dash (`—`).
+  - Cukup tema terang murni (*light theme only*); tanpa footer publik.
+  - Font primer wajib **Plus Jakarta Sans**. Seluruh ikon dibuat manual berupa SVG inline murni.
 - Halaman inti harus bekerja **tanpa JS**; JS hanya peningkatan. Anggaran: JS landing ≤ 150 KB gzip; `map.js`/`charts.js` dimuat lazy.
 - Gambar: WebP/AVIF, `width`/`height`, `loading="lazy"` di bawah lipatan. Font self-host (`font-display: swap`).
 - Endpoint agregat di-cache (`Cache::remember`, kunci berversi).

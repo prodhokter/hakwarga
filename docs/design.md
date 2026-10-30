@@ -809,6 +809,8 @@ For dashboard interfaces, imagery is primarily functional rather than decorative
 
 ### Don't
 
+- :x: **Don't use colored vertical border stripes on cards (`border-l-*`)** — thin colored accent stripes on the left edge of cards are a recognized generic AI slop pattern. Never use them.
+- :x: **Don't use eyebrow pill badges with green/yellow decorative dots** — generic category pills parked above headings are an AI slop cliché.
 - :x: **Don't apply `{colors.primary}` to large background areas** — lime-yellow is an accent, not a surface color. Full-page yellow backgrounds overwhelm and dilute the accent's impact.
 - :x: **Don't use opaque white surfaces** — the glass effect requires transparency. Always use `{colors.surface}` (70% opacity) or `{colors.surface-card}` rather than pure `#ffffff`.
 - :x: **Don't introduce additional accent colors** — the system has one brand accent (`{colors.primary}`), one secondary (`{colors.secondary}`), and four semantic colors. Any new color breaks the visual hierarchy.

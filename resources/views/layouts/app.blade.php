@@ -162,17 +162,10 @@
             </a>
         </nav>
 
-        {{-- Sidebar Footer --}}
-        <div class="p-3 border-t border-slate-100">
-            <a href="/admin"
-               class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-               :title="sidebarCollapsed ? 'Panel Admin' : ''">
-                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                <span x-show="!sidebarCollapsed" class="truncate">Panel Admin</span>
-            </a>
+        {{-- Sidebar Bottom --}}
+        <div class="p-3 border-t border-slate-100 flex items-center" :class="sidebarCollapsed ? 'justify-center' : 'justify-between'">
+            <span x-show="!sidebarCollapsed" class="text-[10px] font-mono text-slate-400">Data Simulasi</span>
+            <span x-show="sidebarCollapsed" class="text-[10px] font-mono text-slate-400" title="Data Simulasi">DS</span>
         </div>
     </aside>
 
@@ -200,35 +193,17 @@
                     <a href="{{ route('ticket.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-100">Cek Tiket</a>
                 </div>
             </div>
-            <div class="pt-3 border-t border-slate-100">
-                <a href="/admin" class="block px-3 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900">Panel Admin</a>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10px] font-mono text-slate-400">Data Simulasi</span>
             </div>
         </div>
     </div>
 
-    {{-- Main App Area --}}
+    {{-- Main App Area (Without Footer) --}}
     <div class="flex-1 flex flex-col min-w-0">
-        <main id="main-content" class="flex-1">
+        <main id="main-content" class="flex-1 pb-16">
             @yield('content')
         </main>
-
-        {{-- Minimalist Enhanced Footer --}}
-        <footer class="bg-white/80 border-t border-slate-200/80 mt-16 py-8 backdrop-blur-xs">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <div class="flex items-center gap-3">
-                    <span class="font-bold text-slate-800">Transparansi Publik</span>
-                    <span>&bull;</span>
-                    <span>UU PDP No. 27/2022</span>
-                    <span>&bull;</span>
-                    <span class="font-mono">Data Simulasi</span>
-                </div>
-                <div class="flex items-center gap-4 text-xs">
-                    <a href="{{ route('about') }}" class="hover:text-slate-900 font-semibold underline">Metodologi</a>
-                    <a href="{{ route('data.index') }}" class="hover:text-slate-900 font-semibold underline">Data Terbuka</a>
-                    <a href="/sitemap.xml" class="hover:text-slate-900 font-semibold underline">Sitemap</a>
-                </div>
-            </div>
-        </footer>
     </div>
 
     {{-- Global Toast Component --}}
