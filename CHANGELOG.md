@@ -12,6 +12,30 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.4.0] - 2026-10-30
+
+### Added
+- **Adopsi Penuh Starline Design System v2.4.0 (NeedMCP):**
+  - **Identitas Visual Starline:** Aksen singular Luminous Lime-Yellow (`#e6ff94`) yang energik pada aksi utama, dipadukan dengan kanvas sejuk soft blue-gray (`#f0f4f8`), permukaan frosted glass 70% opacity dengan subtle backdrop-blur, serta secondary slate (`#64748b`).
+  - **Tipografi Geist & Geist Mono:** Integrasi Google Fonts Geist (display & body) dengan Tight Display Rule (negative letter-spacing `-0.025em`) dan Geist Mono untuk angka tabular finansial, kode resi `HWR-`, dan kode tiket `HWT-`.
+  - **Rombak Total Komponen UI:**
+    - Navbar 60px frosted glass dengan Starline pill tabs (`rounded-full`) dan tombol aksi utama `btn-starline-primary`.
+    - Kartu Starline Glass (`starline-card`): efek kaca buram translucent dengan hairline border tipis dan bayangan level 1 halus.
+    - Input Starline (`input-starline`): rounded 0.75rem, backdrop-blur, dengan border halus dan ring fokus slate/lime.
+    - Footer bertekstur translucent (`surface-deep`) dengan tipografi metadata rapi.
+  - **Sinkronisasi Seluruh Halaman:**
+    - Beranda (`/`): formulir pencarian resi Starline, kartu preview interaktif, dan kartu modul berselubung frosted glass.
+    - Resi Tracker (`/lacak` & `/lacak/{receipt}`): kartu rincian hak, stepper vertikal, tombol salin, bagikan, dan cetak kartu hak.
+    - Peta Anomali (`/peta`): kontrol segmented pill tabs, kontainer peta terintegrasi, dan kartu wilayah ber-accent Starline.
+    - Lapor Pungli & Sanggah (`/lapor`, `/tiket`): wizard bertahap, kotak kredensial kode rahasia Starline lime, dan form pengaduan anonim.
+    - Scorecard SLA (`/scorecard`, `/data`): papan peringkat tabel interaktif dengan baris detail expandable, grafik benchmark garis target 100%, dan kalkulator kebijakan interaktif.
+  - **Kepatuhan Anti-Slop Mutlak:**
+    - Zero AI cliches (tanpa sparkle palsu, tanpa gradien ungu/pink generik).
+    - Zero em dash (`—`) pada seluruh teks UI antarmuka (100% lulus audit R-02).
+  - **Pengujian & Validasi Kualitas:**
+    - 48 Pest tests (305 assertions) 100% lolos.
+    - Pint PSR-12 format bersih & Larastan level 5 bersih.
+
 ## [0.3.0] - 2026-10-30
 
 ### Added
