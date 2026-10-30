@@ -10,6 +10,16 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ## [Unreleased]
 
+### Added
+- **Peningkatan UI/UX & Interaktivitas Visual (Anti-Slop):**
+  - Integrasi MapLibre GL JS (`resources/js/map.js`) pada halaman `/peta`: render poligon GeoJSON offline tanpa ketergantungan API eksternal, hover highlight, interaktif popup kalkulasi rasio, dan tombol penapis status anomali.
+  - Integrasi Chart.js (`resources/js/charts.js`): visual benchmark komparasi respon vs penyelesaian SLA instansi dan diagram proporsi anomali donat.
+  - Pemisahan bundel JavaScript (lazy loading): `app.js` tetap ringan (hanya 22 kB gzip), `map.js` dan `charts.js` hanya dimuat pada halaman relevan.
+  - Tombol aksi "Cetak Kartu Hak" berformat cetak ramah kertas (`@media print`) pada halaman rincian resi `/lacak/{receipt}`.
+  - Tombol interaktif "Salin Nomor Tiket" dan "Salin Kode Rahasia" dengan umpan balik visual instan di halaman sukses lapor `/lapor/sukses`.
+  - Halaman galat kustom berbahasa Indonesia yang bersahabat: `404` (Tidak Ditemukan), `419` (Sesi Kedaluwarsa), `429` (Terlalu Banyak Permintaan), `500` (Kendala Teknis).
+  - Pembaruan navigasi desktop & mobile: tautan seluruh 4 modul kini aktif penuh tanpa label tunda.
+
 ---
 
 ## [0.2.0] - 2026-10-30

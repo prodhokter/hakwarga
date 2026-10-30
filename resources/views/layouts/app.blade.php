@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 <body class="flex min-h-full flex-col text-slate-900 bg-slate-50 antialiased font-sans">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-teal-700 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-teal-900">
@@ -56,17 +57,17 @@
                     <a href="{{ route('tracker.index') }}" class="px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('tracker.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100' }} focus-visible:ring-2 focus-visible:ring-teal-700">
                         Lacak Resi
                     </a>
-                    <a href="{{ route('map.index') }}" class="px-3 py-2 text-sm font-medium rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-teal-700">
+                    <a href="{{ route('map.index') }}" class="px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('map.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100' }} focus-visible:ring-2 focus-visible:ring-teal-700">
                         Peta Anomali
-                        <span class="inline-block text-[10px] font-semibold bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded">Segera</span>
                     </a>
-                    <a href="{{ route('report.choose') }}" class="px-3 py-2 text-sm font-medium rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-teal-700">
-                        Lapor Pungli
-                        <span class="inline-block text-[10px] font-semibold bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded">Segera</span>
+                    <a href="{{ route('report.choose') }}" class="px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('report.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100' }} focus-visible:ring-2 focus-visible:ring-teal-700">
+                        Lapor Pungli &amp; Sanggah
                     </a>
-                    <a href="{{ route('scorecard.index') }}" class="px-3 py-2 text-sm font-medium rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-teal-700">
+                    <a href="{{ route('scorecard.index') }}" class="px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('scorecard.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100' }} focus-visible:ring-2 focus-visible:ring-teal-700">
                         Scorecard SLA
-                        <span class="inline-block text-[10px] font-semibold bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded">Segera</span>
+                    </a>
+                    <a href="{{ route('data.index') }}" class="px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('data.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100' }} focus-visible:ring-2 focus-visible:ring-teal-700">
+                        Data Publik
                     </a>
                 </nav>
 
@@ -94,14 +95,20 @@
                         <a href="{{ route('tracker.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium {{ request()->routeIs('tracker.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-800 hover:bg-slate-50' }}">
                             Lacak Resi Penyaluran
                         </a>
-                        <a href="{{ route('map.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">
-                            Peta Anomali (Segera Hadir)
+                        <a href="{{ route('map.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium {{ request()->routeIs('map.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-800 hover:bg-slate-50' }}">
+                            Peta Anomali Bansos
                         </a>
-                        <a href="{{ route('report.choose') }}" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">
-                            Lapor Pungli &amp; Sanggah (Segera Hadir)
+                        <a href="{{ route('report.choose') }}" class="block px-3 py-2.5 rounded-md text-base font-medium {{ request()->routeIs('report.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-800 hover:bg-slate-50' }}">
+                            Lapor Pungli &amp; Sanggah
                         </a>
-                        <a href="{{ route('scorecard.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">
-                            Scorecard SLA Instansi (Segera Hadir)
+                        <a href="{{ route('scorecard.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium {{ request()->routeIs('scorecard.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-800 hover:bg-slate-50' }}">
+                            Scorecard SLA Instansi
+                        </a>
+                        <a href="{{ route('data.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium {{ request()->routeIs('data.*') ? 'bg-teal-50 text-teal-800' : 'text-slate-800 hover:bg-slate-50' }}">
+                            Metodologi &amp; Data Publik
+                        </a>
+                        <a href="{{ route('ticket.index') }}" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">
+                            Cek Status Tiket Aduan
                         </a>
                         <a href="{{ route('about') }}" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">
                             Tentang &amp; Privasi
@@ -148,7 +155,7 @@
                             <a href="{{ route('about') }}" class="hover:text-teal-700 underline focus-visible:ring-2 focus-visible:ring-teal-700">Metodologi &amp; Perlindungan Warga</a>
                         </li>
                         <li>
-                            <span class="text-xs text-slate-500">Evaluasi Milestone 1 (MIA 2026 - Web In Action)</span>
+                            <a href="/admin" class="hover:text-teal-700 underline focus-visible:ring-2 focus-visible:ring-teal-700">Panel Petugas &amp; Admin (/admin)</a>
                         </li>
                     </ul>
                 </div>
@@ -159,5 +166,7 @@
             </div>
         </div>
     </footer>
+
+    @stack('scripts')
 </body>
 </html>

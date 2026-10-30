@@ -24,6 +24,22 @@
         </div>
     </div>
 
+    {{-- Interactive Visual Benchmark Chart --}}
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-3">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+                <h2 class="text-base font-bold text-slate-900 font-display">Perbandingan Kepatuhan Antar Instansi</h2>
+                <span class="text-xs text-slate-500">Persentase respon tepat waktu (&le; 72 jam) vs penyelesaian tuntas (&le; 14 hari)</span>
+            </div>
+            <span class="text-xs font-bold text-teal-800 bg-teal-50 px-2.5 py-1 rounded border border-teal-200">
+                Target Standar: 100%
+            </span>
+        </div>
+        <div class="h-[280px] w-full pt-2">
+            <canvas id="sla-benchmark-chart"></canvas>
+        </div>
+    </div>
+
     {{-- Scorecard Table --}}
     <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="overflow-x-auto">
@@ -125,4 +141,19 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    window.hwSlaData = [
+        @foreach($scorecard as $row)
+        {
+            name: "{{ addslashes($row['agency_name']) }}",
+            responseRate: {{ $row['response_rate'] }},
+            resolveRate: {{ $row['resolve_rate'] }}
+        },
+        @endforeach
+    ];
+</script>
+@vite(['resources/js/charts.js'])
+@endpush
 @endsection

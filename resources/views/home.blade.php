@@ -117,15 +117,15 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="p-4 rounded-lg border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
+                <div class="p-5 rounded-lg border-2 border-teal-600/30 bg-teal-50/40 flex flex-col justify-between hover:border-teal-700 transition-colors shadow-xs">
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-xs font-bold text-teal-800 uppercase tracking-wide">Modul A</span>
-                            <span class="text-[11px] font-bold bg-teal-700 text-white px-2 py-0.5 rounded">Aktif di M1</span>
+                            <span class="text-[11px] font-bold bg-teal-700 text-white px-2 py-0.5 rounded">Aktif</span>
                         </div>
                         <h3 class="text-base font-bold text-slate-900 font-display">Resi Tracker</h3>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Lacak resi bansos, linimasa 5 tahap penyaluran, dan rincian hak resmi yang wajib diterima warga.
+                            Lacak resi bansos, linimasa 5 tahap penyaluran, dan rincian hak resmi yang wajib diterima warga secara utuh.
                         </p>
                     </div>
                     <div class="mt-4">
@@ -133,11 +133,11 @@
                     </div>
                 </div>
 
-                <div class="p-4 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                <div class="p-5 rounded-lg border-2 border-indigo-600/30 bg-indigo-50/30 flex flex-col justify-between hover:border-indigo-700 transition-colors shadow-xs">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Modul B</span>
-                            <span class="text-[11px] font-medium bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Milestone 2</span>
+                            <span class="text-xs font-bold text-indigo-900 uppercase tracking-wide">Modul B</span>
+                            <span class="text-[11px] font-bold bg-indigo-700 text-white px-2 py-0.5 rounded">Aktif</span>
                         </div>
                         <h3 class="text-base font-bold text-slate-900 font-display">Peta Anomali</h3>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -145,31 +145,31 @@
                         </p>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('map.index') }}" class="text-xs font-medium text-slate-600 hover:underline">Lihat Rencana &rarr;</a>
+                        <a href="{{ route('map.index') }}" class="text-xs font-bold text-indigo-800 hover:text-indigo-900 underline">Buka Peta Anomali &rarr;</a>
                     </div>
                 </div>
 
-                <div class="p-4 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                <div class="p-5 rounded-lg border-2 border-amber-600/30 bg-amber-50/30 flex flex-col justify-between hover:border-amber-700 transition-colors shadow-xs">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Modul C</span>
-                            <span class="text-[11px] font-medium bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Milestone 2</span>
+                            <span class="text-xs font-bold text-amber-900 uppercase tracking-wide">Modul C</span>
+                            <span class="text-[11px] font-bold bg-amber-700 text-white px-2 py-0.5 rounded">Aktif</span>
                         </div>
                         <h3 class="text-base font-bold text-slate-900 font-display">Lapor Pungli &amp; Sanggah</h3>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Pengaduan pemotongan dana tanpa identitas pelapor dan sanggah kelayakan penerima berbasis tiket.
+                            Pengaduan pemotongan dana 100% anonim dan sanggah kelayakan penerima berbasis tiket rahasia.
                         </p>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('report.choose') }}" class="text-xs font-medium text-slate-600 hover:underline">Lihat Rencana &rarr;</a>
+                        <a href="{{ route('report.choose') }}" class="text-xs font-bold text-amber-900 hover:underline">Kirim Laporan &rarr;</a>
                     </div>
                 </div>
 
-                <div class="p-4 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                <div class="p-5 rounded-lg border-2 border-emerald-600/30 bg-emerald-50/30 flex flex-col justify-between hover:border-emerald-700 transition-colors shadow-xs">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Modul D</span>
-                            <span class="text-[11px] font-medium bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Milestone 2</span>
+                            <span class="text-xs font-bold text-emerald-900 uppercase tracking-wide">Modul D</span>
+                            <span class="text-[11px] font-bold bg-emerald-700 text-white px-2 py-0.5 rounded">Aktif</span>
                         </div>
                         <h3 class="text-base font-bold text-slate-900 font-display">Scorecard SLA Instansi</h3>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -177,7 +177,7 @@
                         </p>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('scorecard.index') }}" class="text-xs font-medium text-slate-600 hover:underline">Lihat Rencana &rarr;</a>
+                        <a href="{{ route('scorecard.index') }}" class="text-xs font-bold text-emerald-900 hover:underline">Lihat Peringkat &rarr;</a>
                     </div>
                 </div>
             </div>

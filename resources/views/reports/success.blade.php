@@ -17,14 +17,21 @@
         </div>
 
         {{-- Credentials Box --}}
-        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 text-left space-y-4">
+        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 text-left space-y-4" x-data="{ copiedTicket: false, copiedSecret: false }">
             <div>
                 <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Nomor Tiket Publik</span>
-                <div class="flex items-center justify-between mt-1">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-1">
                     <span class="text-xl sm:text-2xl font-bold font-mono text-slate-900 tracking-tight select-all">
                         {{ $ticketCode }}
                     </span>
-                    <span class="text-[11px] text-slate-500">Bisa dibagikan untuk cek status</span>
+                    <button
+                        type="button"
+                        @click="navigator.clipboard.writeText('{{ $ticketCode }}'); copiedTicket = true; setTimeout(() => copiedTicket = false, 2500)"
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-semibold border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 min-h-[38px] w-fit"
+                    >
+                        <span x-show="!copiedTicket">Salin Nomor Tiket</span>
+                        <span x-show="copiedTicket" x-cloak class="text-emerald-700 font-bold">&check; Berhasil Disalin!</span>
+                    </button>
                 </div>
             </div>
 
@@ -32,11 +39,18 @@
                 <span class="text-xs font-bold text-amber-900 uppercase tracking-wider block">
                     Kode Rahasia Akses Tiket (Hanya Tampil Sekali)
                 </span>
-                <div class="flex items-center justify-between mt-1">
-                    <span class="text-xl sm:text-2xl font-bold font-mono text-teal-900 tracking-widest bg-amber-100/60 px-3 py-1 rounded border border-amber-300 select-all">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-1">
+                    <span class="text-xl sm:text-2xl font-bold font-mono text-teal-900 tracking-widest bg-amber-100/60 px-3 py-1.5 rounded border border-amber-300 select-all">
                         {{ $secretCode }}
                     </span>
-                    <span class="text-[11px] font-semibold text-rose-700">Jangan Berikan ke Siapa Pun</span>
+                    <button
+                        type="button"
+                        @click="navigator.clipboard.writeText('{{ $secretCode }}'); copiedSecret = true; setTimeout(() => copiedSecret = false, 2500)"
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold border border-amber-400 bg-amber-100 hover:bg-amber-200 text-amber-950 min-h-[38px] w-fit"
+                    >
+                        <span x-show="!copiedSecret">Salin Kode Rahasia</span>
+                        <span x-show="copiedSecret" x-cloak class="text-emerald-800 font-bold">&check; Berhasil Disalin!</span>
+                    </button>
                 </div>
             </div>
         </div>

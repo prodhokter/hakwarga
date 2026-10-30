@@ -42,22 +42,93 @@
         </div>
     </div>
 
-    {{-- Visual Map Card with Offline GeoJSON Representation --}}
-    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+    {{-- Interactive Map & Doughnut Section --}}
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
-                <h2 class="text-base font-bold text-slate-900 font-display">Visualisasi Wilayah Pilot Jawa Tengah</h2>
-                <span class="text-xs text-slate-500">Periode: {{ $period }} (Program PKH &amp; Sembako)</span>
+                <h2 class="text-base font-bold text-slate-900 font-display">Peta Interaktif &amp; Distribusi Alokasi Jawa Tengah</h2>
+                <span class="text-xs text-slate-500">Arahkan kursor ke wilayah poligon untuk melihat rincian kalkulasi rasio sasaran</span>
             </div>
-            <div class="flex items-center gap-3 text-xs">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500"></span> Defisit Kuota</span>
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> Surplus Kuota</span>
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Proporsional</span>
+
+            {{-- Filter Chips --}}
+            <div class="flex flex-wrap items-center gap-1.5" x-data="{ activeFilter: 'all' }">
+                <button
+                    type="button"
+                    @click="activeFilter = 'all'; if (window.hwFilterMap) window.hwFilterMap('all')"
+                    :class="activeFilter === 'all' ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+                    class="px-2.5 py-1 text-xs font-semibold rounded-md transition-colors"
+                >
+                    Semua
+                </button>
+                <button
+                    type="button"
+                    @click="activeFilter = 'under_coverage'; if (window.hwFilterMap) window.hwFilterMap('under_coverage')"
+                    :class="activeFilter === 'under_coverage' ? 'bg-amber-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+                    class="px-2.5 py-1 text-xs font-semibold rounded-md transition-colors"
+                >
+                    Defisit Kuota
+                </button>
+                <button
+                    type="button"
+                    @click="activeFilter = 'over_coverage'; if (window.hwFilterMap) window.hwFilterMap('over_coverage')"
+                    :class="activeFilter === 'over_coverage' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+                    class="px-2.5 py-1 text-xs font-semibold rounded-md transition-colors"
+                >
+                    Surplus Kuota
+                </button>
+                <button
+                    type="button"
+                    @click="activeFilter = 'normal'; if (window.hwFilterMap) window.hwFilterMap('normal')"
+                    :class="activeFilter === 'normal' ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+                    class="px-2.5 py-1 text-xs font-semibold rounded-md transition-colors"
+                >
+                    Normal
+                </button>
             </div>
         </div>
 
-        {{-- Geo Visual Grid --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {{-- MapLibre Container --}}
+            <div class="lg:col-span-2 rounded-lg overflow-hidden border border-slate-200 bg-slate-50 relative min-h-[380px]">
+                <div id="maplibre-container" class="w-full h-[380px]"></div>
+                <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-xs px-2.5 py-1.5 rounded text-[11px] text-slate-600 border border-slate-200 pointer-events-none">
+                    MapLibre GL JS &bull; GeoJSON Mandiri Offline
+                </div>
+            </div>
+
+            {{-- Doughnut Chart & Legend --}}
+            <div class="flex flex-col justify-between border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+                <div>
+                    <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 font-display">
+                        Proporsi Kategori Anomali
+                    </h3>
+                    <div class="h-[230px] relative">
+                        <canvas id="anomaly-doughnut-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-200 pt-3 text-xs space-y-1.5 text-slate-600">
+                    <div class="flex justify-between items-center">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Defisit Kuota:</span>
+                        <span class="font-bold">{{ $underCount }} wilayah ({{ round(($underCount / max(1, $anomalies->count())) * 100) }}%)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> Surplus Kuota:</span>
+                        <span class="font-bold">{{ $overCount }} wilayah ({{ round(($overCount / max(1, $anomalies->count())) * 100) }}%)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Proporsional:</span>
+                        <span class="font-bold">{{ $normalCount }} wilayah ({{ round(($normalCount / max(1, $anomalies->count())) * 100) }}%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Regional Cards Strip --}}
+    <div class="space-y-3">
+        <h2 class="text-base font-bold text-slate-900 font-display">Daftar Wilayah Pilot &amp; Rasio Sasaran</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             @foreach($anomalies as $anomaly)
                 @php
                     $cardBorder = match($anomaly->flag->value) {
@@ -66,7 +137,7 @@
                         default => 'border-slate-200 bg-white',
                     };
                 @endphp
-                <div class="p-4 rounded-lg border {{ $cardBorder }} flex flex-col justify-between space-y-3">
+                <div class="p-4 rounded-lg border {{ $cardBorder }} flex flex-col justify-between space-y-3 shadow-xs">
                     <div>
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-slate-500">{{ $anomaly->bps_code }}</span>
@@ -154,4 +225,15 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    window.hwAnomalyCounts = {
+        under: {{ $underCount }},
+        normal: {{ $normalCount }},
+        over: {{ $overCount }}
+    };
+</script>
+@vite(['resources/js/map.js', 'resources/js/charts.js'])
+@endpush
 @endsection
