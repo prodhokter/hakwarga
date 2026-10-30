@@ -12,6 +12,21 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.7.0] - 2026-10-30
+
+### Added
+- **Mobile Floating iOS Glass Dock & Navigasi Fleksibel:**
+  - Pembuatan floating bottom dock navigasi khas iOS app dengan glassmorphism (`backdrop-blur-xl`, border tipis, bayangan mengambang halus).
+  - 5 tombol navigasi: 4 fitur utama (Beranda, Lacak Resi, Peta Anomali, Lapor Pungli) dan 1 tombol expand tengah bertanda plus `(+)` menonjol.
+  - Animasi rotasi tombol plus 45 derajat menjadi silang saat membuka modal/sheet overlay navigasi tambahan (Sanggah Bansos, Cek Tiket, Scorecard SLA, Data Publik, Metodologi).
+  - Penghapusan total icon crosshatch/glitch (Image #8) dan penggantian dengan tombol toggle sidebar presisi manual SVG (Image #9).
+  - Perlebaran sidebar desktop menjadi 288px (`md:w-72`) untuk proporsi yang lebih lapang dan elegan.
+  - Penghapusan teks glitch `Data SimulasiDS` (Image #10).
+  - Instalasi skill `logo-design-skill` dari GitHub (`kaankiziltug/logo-design-skill.git`) tanpa eksekusi generate logo terlebih dahulu.
+  - Pemeliharaan 48 Pest tests (305 assertions) 100% hijau, Pint format bersih, dan Larastan Level 5 bersih.
+
+---
+
 ## [0.6.0] - 2026-10-30
 
 ### Added
