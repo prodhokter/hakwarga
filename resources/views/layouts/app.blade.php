@@ -3,258 +3,239 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Penyaluran Bansos & Pemenuhan Hak Publik' }}</title>
-    <meta name="description" content="Platform transparansi pemenuhan hak bantuan sosial warga: Resi Tracker, Peta Anomali, Kanal Lapor Pungli, dan Scorecard SLA Instansi.">
+    <title>{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}</title>
+    <meta name="description" content="Platform transparansi pemenuhan hak bantuan sosial: Lacak Resi, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-    {{-- Starline Design System Fonts: Geist & Geist Mono --}}
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
+    <meta property="og:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
+    <meta property="og:image" content="{{ asset('og-image.svg') }}">
+
+    {{-- Twitter --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
+    <meta name="twitter:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
+    <meta name="twitter:image" content="{{ asset('og-image.svg') }}">
+
+    {{-- Primary Font: Plus Jakarta Sans --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="flex min-h-full flex-col text-slate-800 dark:text-slate-100 bg-[#f0f4f8] dark:bg-[#0b1120] antialiased font-sans transition-colors duration-200"
+<body class="min-h-full bg-[#f0f4f8] text-[#1e293b] antialiased font-sans flex flex-col md:flex-row"
       x-data="{
-          mobileOpen: false,
-          bannerVisible: sessionStorage.getItem('dismiss_sim_banner') !== 'true',
-          darkMode: document.documentElement.classList.contains('dark'),
-          toggleDark() {
-              this.darkMode = !this.darkMode;
-              if (this.darkMode) {
-                  document.documentElement.classList.add('dark');
-                  localStorage.setItem('theme', 'dark');
-              } else {
-                  document.documentElement.classList.remove('dark');
-                  localStorage.setItem('theme', 'light');
-              }
-          },
-          dismissBanner() {
-              this.bannerVisible = false;
-              sessionStorage.setItem('dismiss_sim_banner', 'true');
+          sidebarCollapsed: localStorage.getItem('hw_sidebar_collapsed') === 'true',
+          mobileSidebarOpen: false,
+          toggleSidebar() {
+              this.sidebarCollapsed = !this.sidebarCollapsed;
+              localStorage.setItem('hw_sidebar_collapsed', this.sidebarCollapsed);
           }
       }">
 
     {{-- Accessibility Skip Link --}}
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-slate-900 focus:text-[#e6ff94] focus:px-5 focus:py-2 focus:outline-none focus:ring-2 focus:ring-[#e6ff94] shadow-lg text-xs font-bold">
-        Lompat ke konten utama
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-[#0f172a] focus:text-[#e6ff94] focus:px-4 focus:py-2 text-xs font-bold shadow-lg">
+        Lompat Konten
     </a>
 
-    {{-- Simulation Notice Banner --}}
-    @if(config('hakwarga.simulated_banner', true))
-    <div x-show="bannerVisible" x-cloak class="bg-amber-100/90 dark:bg-amber-950/80 border-b border-amber-300/80 dark:border-amber-800/80 text-amber-950 dark:text-amber-200 px-4 py-2 text-xs font-medium backdrop-blur-xs transition-all" role="alert">
-        <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2 flex-1">
-                <span class="inline-flex items-center rounded-full bg-amber-800 dark:bg-amber-700 text-amber-50 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase shrink-0">
-                    Data Simulasi
-                </span>
-                <span class="text-xs leading-tight">
-                    Situs dalam tahap pengujian kompetisi MIA 2026. Seluruh data penerima, penyaluran, dan resi adalah <strong>DATA SIMULASI</strong>.
-                </span>
-            </div>
-            <button type="button" @click="dismissBanner()" class="text-amber-800 dark:text-amber-400 hover:text-amber-950 dark:hover:text-amber-100 p-1 rounded-full shrink-0 focus:outline-none focus:ring-2 focus:ring-amber-700" aria-label="Tutup pemberitahuan simulasi">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    {{-- Mobile Top Bar --}}
+    <div class="md:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+        <button type="button" @click="mobileSidebarOpen = true" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="Buka Menu">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <span class="text-xs font-mono font-bold bg-[#e6ff94] text-slate-900 px-2.5 py-1 rounded-full">
+            Simulasi
+        </span>
+    </div>
+
+    {{-- Collapsible Left Sidebar --}}
+    <aside
+        :class="sidebarCollapsed ? 'md:w-20' : 'md:w-64'"
+        class="hidden md:flex flex-col sticky top-0 h-screen bg-white/80 backdrop-blur-md border-r border-slate-200/80 transition-all duration-300 z-30 shrink-0">
+
+        {{-- Sidebar Header & Collapse Toggle --}}
+        <div class="h-16 flex items-center px-4 border-b border-slate-100" :class="sidebarCollapsed ? 'justify-center' : 'justify-between'">
+            <span x-show="!sidebarCollapsed" class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                Menu Utama
+            </span>
+            <button
+                type="button"
+                @click="toggleSidebar()"
+                class="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+                :title="sidebarCollapsed ? 'Perluas Sidebar' : 'Kecilkan Sidebar'"
+            >
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path x-show="!sidebarCollapsed" stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+                    <path x-show="sidebarCollapsed" stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
                 </svg>
             </button>
         </div>
+
+        {{-- Nav Items --}}
+        <nav class="flex-1 px-3 py-4 space-y-1.5 overflow-y-auto" aria-label="Navigasi Samping">
+            {{-- 1. Beranda --}}
+            <a href="{{ route('home') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('home') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Beranda' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Beranda</span>
+            </a>
+
+            {{-- 2. Lacak Resi --}}
+            <a href="{{ route('tracker.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('tracker.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Lacak Resi' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Lacak Resi</span>
+            </a>
+
+            {{-- 3. Peta Anomali --}}
+            <a href="{{ route('map.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('map.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Peta Anomali' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Peta Anomali</span>
+            </a>
+
+            {{-- 4. Lapor Pungli --}}
+            <a href="{{ route('report.extortion.create') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('report.extortion.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Lapor Pungli' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Lapor Pungli</span>
+            </a>
+
+            {{-- 5. Sanggah Bansos --}}
+            <a href="{{ route('report.dispute.create') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('report.dispute.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Sanggah Bansos' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Sanggah Bansos</span>
+            </a>
+
+            {{-- 6. Scorecard SLA --}}
+            <a href="{{ route('scorecard.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('scorecard.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Scorecard SLA' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Scorecard SLA</span>
+            </a>
+
+            {{-- 7. Data Publik --}}
+            <a href="{{ route('data.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('data.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Data Publik' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Data Publik</span>
+            </a>
+
+            {{-- 8. Cek Tiket --}}
+            <a href="{{ route('ticket.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all {{ request()->routeIs('ticket.*') ? 'bg-[#0f172a] text-[#e6ff94] shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+               :title="sidebarCollapsed ? 'Cek Tiket' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Cek Tiket</span>
+            </a>
+        </nav>
+
+        {{-- Sidebar Footer --}}
+        <div class="p-3 border-t border-slate-100">
+            <a href="/admin"
+               class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+               :title="sidebarCollapsed ? 'Panel Admin' : ''">
+                <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span x-show="!sidebarCollapsed" class="truncate">Panel Admin</span>
+            </a>
+        </div>
+    </aside>
+
+    {{-- Mobile Sidebar Drawer Overlay --}}
+    <div x-show="mobileSidebarOpen" x-cloak class="fixed inset-0 z-50 md:hidden" @keydown.window.escape="mobileSidebarOpen = false">
+        <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs" @click="mobileSidebarOpen = false"></div>
+        <div class="relative w-64 bg-white h-full p-4 flex flex-col justify-between shadow-xl">
+            <div>
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">Menu Navigasi</span>
+                    <button type="button" @click="mobileSidebarOpen = false" class="p-1 rounded-lg text-slate-500">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-1">
+                    <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('home') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Beranda</a>
+                    <a href="{{ route('tracker.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('tracker.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Lacak Resi</a>
+                    <a href="{{ route('map.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('map.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Peta Anomali</a>
+                    <a href="{{ route('report.extortion.create') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('report.extortion.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Lapor Pungli</a>
+                    <a href="{{ route('report.dispute.create') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('report.dispute.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Sanggah Bansos</a>
+                    <a href="{{ route('scorecard.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('scorecard.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Scorecard SLA</a>
+                    <a href="{{ route('data.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold {{ request()->routeIs('data.*') ? 'bg-[#0f172a] text-[#e6ff94]' : 'text-slate-700 hover:bg-slate-100' }}">Data Publik</a>
+                    <a href="{{ route('ticket.index') }}" class="block px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-100">Cek Tiket</a>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100">
+                <a href="/admin" class="block px-3 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900">Panel Admin</a>
+            </div>
+        </div>
     </div>
-    @endif
 
-    {{-- Header / Sticky Navbar (Height: 60px as per Starline specs) --}}
-    <header class="sticky top-0 z-40 bg-white/75 dark:bg-[#0f172a]/75 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 transition-colors">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-[60px]">
-                {{-- Brand Identity --}}
+    {{-- Main App Area --}}
+    <div class="flex-1 flex flex-col min-w-0">
+        <main id="main-content" class="flex-1">
+            @yield('content')
+        </main>
+
+        {{-- Minimalist Enhanced Footer --}}
+        <footer class="bg-white/80 border-t border-slate-200/80 mt-16 py-8 backdrop-blur-xs">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                 <div class="flex items-center gap-3">
-                    <a href="{{ route('home') }}" class="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-full p-1">
-                        <div class="w-7 h-7 rounded-full bg-slate-900 dark:bg-[#e6ff94] flex items-center justify-center text-[#e6ff94] dark:text-[#0f172a] font-extrabold text-sm font-mono shadow-xs">
-                            H
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-base font-extrabold tracking-tight text-slate-900 dark:text-white font-display">HakWarga</span>
-                            <span x-show="!bannerVisible" x-cloak class="text-[9px] font-bold bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-700">
-                                Simulasi
-                            </span>
-                        </div>
-                    </a>
+                    <span class="font-bold text-slate-800">Transparansi Publik</span>
+                    <span>&bull;</span>
+                    <span>UU PDP No. 27/2022</span>
+                    <span>&bull;</span>
+                    <span class="font-mono">Data Simulasi</span>
                 </div>
-
-                {{-- Desktop Navigation (Starline Pill Tabs) --}}
-                <nav class="hidden lg:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-800/60 p-1 rounded-full border border-slate-200/50 dark:border-slate-700/50" aria-label="Navigasi Utama">
-                    <a href="{{ route('home') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('home') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Beranda
-                    </a>
-                    <a href="{{ route('tracker.index') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('tracker.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Lacak Resi
-                    </a>
-                    <a href="{{ route('map.index') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('map.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Peta Anomali
-                    </a>
-                    <a href="{{ route('report.choose') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('report.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Lapor Pungli &amp; Sanggah
-                    </a>
-                    <a href="{{ route('scorecard.index') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('scorecard.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Scorecard SLA
-                    </a>
-                    <a href="{{ route('data.index') }}" class="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all {{ request()->routeIs('data.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950 shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' }}">
-                        Data Publik
-                    </a>
-                </nav>
-
-                {{-- Action Controls & Starline Primary CTA --}}
-                <div class="hidden lg:flex items-center gap-3">
-                    {{-- Theme Toggle --}}
-                    <button type="button" @click="toggleDark()" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400" :aria-label="darkMode ? 'Beralih ke mode terang' : 'Beralih ke mode gelap'">
-                        <svg x-show="!darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        </svg>
-                        <svg x-show="darkMode" x-cloak class="w-4 h-4 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </button>
-
-                    {{-- Starline Primary Pill Action --}}
-                    <a href="{{ route('report.choose') }}" class="btn-starline-primary text-xs font-bold tracking-tight">
-                        <svg class="w-3.5 h-3.5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                        </svg>
-                        Lapor Pungli Anonim
-                    </a>
-                </div>
-
-                {{-- Mobile Hamburger & Theme Toggle Button --}}
-                <div class="flex items-center gap-1.5 lg:hidden">
-                    <button type="button" @click="toggleDark()" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors" :aria-label="darkMode ? 'Beralih ke mode terang' : 'Beralih ke mode gelap'">
-                        <svg x-show="!darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        </svg>
-                        <svg x-show="darkMode" x-cloak class="w-4 h-4 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </button>
-
-                    <button type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800" aria-label="Buka navigasi mobile">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path x-show="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            <path x-show="mobileOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                <div class="flex items-center gap-4 text-xs">
+                    <a href="{{ route('about') }}" class="hover:text-slate-900 font-semibold underline">Metodologi</a>
+                    <a href="{{ route('data.index') }}" class="hover:text-slate-900 font-semibold underline">Data Terbuka</a>
+                    <a href="/sitemap.xml" class="hover:text-slate-900 font-semibold underline">Sitemap</a>
                 </div>
             </div>
-        </div>
+        </footer>
+    </div>
 
-        {{-- Mobile Drawer Overlay --}}
-        <div x-show="mobileOpen" x-cloak class="fixed inset-0 z-50 lg:hidden" @keydown.window.escape="mobileOpen = false">
-            <div x-show="mobileOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs" @click="mobileOpen = false" aria-hidden="true"></div>
-
-            <div x-show="mobileOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" class="relative z-50 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 px-6 pt-4 pb-8 shadow-2xl max-h-[85vh] overflow-y-auto">
-                <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
-                    <span class="text-sm font-bold text-slate-900 dark:text-white font-display">Menu Navigasi</span>
-                    <button type="button" @click="mobileOpen = false" class="p-1 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="space-y-1.5">
-                    <a href="{{ route('home') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('home') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Beranda
-                    </a>
-                    <a href="{{ route('tracker.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('tracker.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Lacak Resi Penyaluran
-                    </a>
-                    <a href="{{ route('map.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('map.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Peta Anomali Bansos
-                    </a>
-                    <a href="{{ route('report.choose') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('report.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Lapor Pungli &amp; Sanggah
-                    </a>
-                    <a href="{{ route('scorecard.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('scorecard.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Scorecard SLA Instansi
-                    </a>
-                    <a href="{{ route('data.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('data.*') ? 'bg-slate-900 text-white dark:bg-[#e6ff94] dark:text-slate-950' : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' }}">
-                        Metodologi &amp; Data Publik
-                    </a>
-                    <a href="{{ route('ticket.index') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                        Cek Status Tiket Aduan
-                    </a>
-                    <a href="{{ route('about') }}" class="block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                        Tentang &amp; Privasi
-                    </a>
-                </div>
-
-                <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800">
-                    <a href="{{ route('report.choose') }}" class="btn-starline-primary w-full text-center text-sm font-bold">
-                        Lapor Pungli Anonim
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    {{-- Main Content --}}
-    <main id="main-content" class="flex-1">
-        @yield('content')
-    </main>
-
-    {{-- Global Toast --}}
-    <div id="hw-toast" class="fixed bottom-5 right-5 z-50 transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none bg-slate-900/90 text-white px-4 py-2.5 rounded-full shadow-xl text-xs font-semibold flex items-center gap-2 border border-slate-700 backdrop-blur-md">
+    {{-- Global Toast Component --}}
+    <div id="hw-toast" class="fixed bottom-5 right-5 z-50 transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none bg-slate-900 text-white px-4 py-2.5 rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 border border-slate-800">
         <span id="hw-toast-icon" class="text-[#e6ff94] font-bold">&check;</span>
         <span id="hw-toast-msg">Notifikasi</span>
     </div>
-
-    {{-- Starline Translucent Footer (Surface-Deep) --}}
-    <footer class="bg-white/60 dark:bg-[#070d18]/80 border-t border-slate-200/60 dark:border-slate-800/60 mt-20 py-12 backdrop-blur-md transition-colors">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-6 h-6 rounded-full bg-slate-900 dark:bg-[#e6ff94] flex items-center justify-center text-[#e6ff94] dark:text-[#0f172a] font-bold text-xs font-mono">
-                            H
-                        </div>
-                        <span class="text-base font-bold text-slate-900 dark:text-white font-display">HakWarga</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
-                        Platform transparansi bantuan sosial independen. Didesain untuk memastikan hak warga negara tersalurkan utuh tanpa potongan liar.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 font-display">Prinsip Privasi UU PDP</h3>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Sesuai UU Perlindungan Data Pribadi No. 27/2022, sistem tidak menyimpan atau menampilkan NIK mentah warga. Pelacakan hanya berbasis kode resi resmi tanpa membuka identitas personal.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 font-display">Tautan Navigasi</h3>
-                    <ul class="text-xs space-y-2 text-slate-600 dark:text-slate-400">
-                        <li>
-                            <a href="{{ route('tracker.index') }}" class="hover:text-slate-900 dark:hover:text-white underline">Lacak Nomor Resi</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('about') }}" class="hover:text-slate-900 dark:hover:text-white underline">Metodologi &amp; Perlindungan Warga</a>
-                        </li>
-                        <li>
-                            <a href="/admin" class="hover:text-slate-900 dark:hover:text-white underline">Panel Petugas &amp; Admin (/admin)</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-slate-200/50 dark:border-slate-800/50 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 gap-2 font-mono">
-                <p>&copy; 2026 HakWarga &bull; Starline Design System v2.4.0</p>
-                <p>Zona Waktu: Asia/Jakarta</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         window.hwToast = (message, isError = false) => {

@@ -12,6 +12,22 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.5.0] - 2026-10-30
+
+### Added
+- **Pembaruan Layout & Navigasi:**
+  - Penggantian topbar/navbar dengan sidebar yang dapat diciutkan (*collapsible sidebar*), mendukung mode kompak dan drawer mobile.
+  - Penyederhanaan seluruh teks antarmuka menjadi frasa 1 hingga 2 kata yang padat, lugas, dan bebas basa-basi.
+  - Pembuatan seluruh ikon secara manual berformat SVG murni tanpa dependensi eksternal.
+  - Penetapan font **Plus Jakarta Sans** sebagai tipografi primer seluruh halaman.
+  - Penyempurnaan footer minimalis dan terstruktur.
+  - Penghapusan toggle tema (penguncian pada light theme yang bersih).
+  - Penghapusan seluruh elemen badge ber-dot (Image #2), banner kuning simulasi (Image #3), dan blok logo H (Image #4).
+  - Penambahan `robots.txt`, `sitemap.xml`, OpenGraph tags, Twitter cards, dan visual OG image mandiri (`public/og-image.svg`).
+  - Pembersihan total em dash (`—`) dan pemeliharaan 48 Pest tests (100% hijau).
+
+---
+
 ## [0.4.0] - 2026-10-30
 
 ### Added
