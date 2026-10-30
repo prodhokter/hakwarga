@@ -12,6 +12,17 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [0.9.0] - 2026-10-30
+
+### Added
+- **Penyempurnaan Arched Dome Menu (Image #14) & Pembersihan Elemen:**
+  - Pembuatan menu melengkung setengah lingkaran (*arched dome fan menu*) yang mekar persis di atas tombol lingkar pusat dock mobile sesuai referensi Image #14, dengan 4 tombol sirkular layanan tambahan (Sanggah, Tiket, SLA, Data).
+  - Penghapusan pill badge `Data Simulasi` (Image #11) pada top bar mobile.
+  - Penghapusan deretan chip `Uji Coba` (Image #13) pada form pencarian halaman Beranda.
+  - Pemeliharaan penuh 48 Pest tests (303 assertions) 100% hijau, Pint format bersih, dan Larastan Level 5 bersih.
+
+---
+
 ## [0.8.0] - 2026-10-30
 
 ### Added

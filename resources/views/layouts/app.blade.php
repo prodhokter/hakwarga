@@ -63,9 +63,6 @@
                 <span class="text-sm font-extrabold text-slate-900 font-display">HakWarga</span>
             </div>
         </div>
-        <span class="text-xs font-mono font-bold bg-[#e6ff94] text-slate-900 px-3 py-1 rounded-full border border-[#c2e050] shadow-2xs">
-            Data Simulasi
-        </span>
     </div>
 
     {{-- Collapsible Left Sidebar (Wider: md:w-72 when expanded, md:w-20 when collapsed) --}}
@@ -216,97 +213,120 @@
         </main>
     </div>
 
-    {{-- Mobile Floating iOS Glass Dock (5 Buttons) --}}
-    <div class="md:hidden fixed bottom-4 inset-x-0 z-40 px-4 flex justify-center pointer-events-none" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
-        <nav class="pointer-events-auto bg-white/85 backdrop-blur-xl border border-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.18)] rounded-full px-3 py-2 flex items-center justify-between gap-1 w-full max-w-sm" aria-label="Dock Navigasi Mobile">
-            {{-- 1. Beranda --}}
-            <a href="{{ route('home') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('home') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-                <span>Beranda</span>
-            </a>
-
-            {{-- 2. Lacak Resi --}}
-            <a href="{{ route('tracker.index') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('tracker.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                <span>Lacak</span>
-            </a>
-
-            {{-- 3. Center Prominent Plus Expand Button --}}
-            <button
-                type="button"
-                @click="moreNavOpen = !moreNavOpen"
-                class="w-12 h-12 -mt-4 rounded-full bg-[#0f172a] text-[#e6ff94] shadow-[0_4px_16px_rgba(15,23,42,0.35)] flex items-center justify-center transition-all duration-300 transform active:scale-95 border-2 border-white focus:outline-none cursor-pointer"
-                aria-label="Menu Tambahan"
-            >
-                <svg class="w-6 h-6 transition-transform duration-300" :class="moreNavOpen ? 'rotate-45 text-rose-400' : 'rotate-0 text-[#e6ff94]'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-                </svg>
-            </button>
-
-            {{-- 4. Peta Anomali --}}
-            <a href="{{ route('map.index') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('map.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-                </svg>
-                <span>Peta</span>
-            </a>
-
-            {{-- 5. Lapor Pungli --}}
-            <a href="{{ route('report.extortion.create') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('report.extortion.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                </svg>
-                <span>Lapor</span>
-            </a>
-        </nav>
+    {{-- Soft Background Dim Overlay --}}
+    <div x-show="moreNavOpen" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="md:hidden fixed inset-0 z-30 bg-slate-900/30 backdrop-blur-xs"
+         @click="moreNavOpen = false"
+         aria-hidden="true">
     </div>
 
-    {{-- Expand Overlay Sheet for (+) Button --}}
-    <div x-show="moreNavOpen" x-cloak class="md:hidden fixed inset-0 z-50 flex flex-col justify-end p-4 pb-24" @keydown.window.escape="moreNavOpen = false">
-        <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity" @click="moreNavOpen = false"></div>
-        <div x-show="moreNavOpen"
-             x-transition:enter="transition ease-out duration-300 transform"
-             x-transition:enter-start="translate-y-8 opacity-0 scale-95"
-             x-transition:enter-end="translate-y-0 opacity-100 scale-100"
-             x-transition:leave="transition ease-in duration-200 transform"
-             x-transition:leave-start="translate-y-0 opacity-100 scale-100"
-             x-transition:leave-end="translate-y-8 opacity-0 scale-95"
-             class="relative z-50 bg-white/95 backdrop-blur-2xl border border-white/80 rounded-3xl p-5 shadow-2xl space-y-3">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">Layanan Lainnya</span>
-                <button type="button" @click="moreNavOpen = false" class="text-slate-400 hover:text-slate-800 p-1">
+    {{-- Mobile Floating iOS Glass Dock (5 Buttons) with Arched Radial Fan (Image #14) --}}
+    <div class="md:hidden fixed bottom-4 inset-x-0 z-40 px-3 flex justify-center pointer-events-none" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+        <div class="relative pointer-events-auto flex justify-center w-full max-w-sm">
+
+            {{-- Semicircular / Arched Floating Glass Fan Menu (Image #14) --}}
+            <div x-show="moreNavOpen" x-cloak
+                 x-transition:enter="transition ease-out duration-300 transform origin-bottom"
+                 x-transition:enter-start="scale-50 translate-y-8 opacity-0"
+                 x-transition:enter-end="scale-100 translate-y-0 opacity-100"
+                 x-transition:leave="transition ease-in duration-200 transform origin-bottom"
+                 x-transition:leave-start="scale-100 translate-y-0 opacity-100"
+                 x-transition:leave-end="scale-50 translate-y-8 opacity-0"
+                 class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[310px] h-[125px] rounded-t-full bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_-12px_40px_rgba(15,23,42,0.18)] px-5 pt-3.5 pb-10 flex items-center justify-between z-10"
+                 @click.outside="moreNavOpen = false">
+                {{-- 1. Sanggah --}}
+                <a href="{{ route('report.dispute.create') }}" class="flex flex-col items-center group -mt-1">
+                    <div class="w-10 h-10 rounded-full bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-800 group-hover:bg-[#e6ff94] transition-colors">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-700 mt-1">Sanggah</span>
+                </a>
+
+                {{-- 2. Cek Tiket --}}
+                <a href="{{ route('ticket.index') }}" class="flex flex-col items-center group -mt-5">
+                    <div class="w-10 h-10 rounded-full bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-800 group-hover:bg-[#e6ff94] transition-colors">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-700 mt-1">Tiket</span>
+                </a>
+
+                {{-- 3. Scorecard SLA --}}
+                <a href="{{ route('scorecard.index') }}" class="flex flex-col items-center group -mt-5">
+                    <div class="w-10 h-10 rounded-full bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-800 group-hover:bg-[#e6ff94] transition-colors">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-700 mt-1">SLA</span>
+                </a>
+
+                {{-- 4. Data Publik --}}
+                <a href="{{ route('data.index') }}" class="flex flex-col items-center group -mt-1">
+                    <div class="w-10 h-10 rounded-full bg-[#ffedd5] border border-orange-300 shadow-2xs flex items-center justify-center text-orange-950 group-hover:bg-[#e6ff94] transition-colors">
+                        <svg class="w-5 h-5 text-orange-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-700 mt-1">Data</span>
+                </a>
+            </div>
+
+            {{-- Main Dock Bar --}}
+            <nav class="relative z-20 bg-white/85 backdrop-blur-xl border border-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.18)] rounded-full px-3 py-2 flex items-center justify-between gap-1 w-full" aria-label="Dock Navigasi Mobile">
+                {{-- 1. Beranda --}}
+                <a href="{{ route('home') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('home') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span>Beranda</span>
+                </a>
+
+                {{-- 2. Lacak Resi --}}
+                <a href="{{ route('tracker.index') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('tracker.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <span>Lacak</span>
+                </a>
+
+                {{-- 3. Center Prominent Plus Expand Button --}}
+                <button
+                    type="button"
+                    @click="moreNavOpen = !moreNavOpen"
+                    class="w-12 h-12 -mt-5 rounded-full bg-[#0f172a] text-[#e6ff94] shadow-[0_4px_16px_rgba(15,23,42,0.35)] flex items-center justify-center transition-all duration-300 transform active:scale-95 border-2 border-white focus:outline-none cursor-pointer"
+                    aria-label="Menu Tambahan"
+                >
+                    <svg class="w-6 h-6 transition-transform duration-300" :class="moreNavOpen ? 'rotate-45 text-rose-400' : 'rotate-0 text-[#e6ff94]'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
                     </svg>
                 </button>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-xs">
-                <a href="{{ route('report.dispute.create') }}" class="p-3 rounded-2xl bg-slate-50 hover:bg-[#e6ff94] transition-colors border border-slate-200/80 flex flex-col justify-between space-y-1">
-                    <span class="font-bold text-slate-900">Sanggah Bansos</span>
-                    <span class="text-[10px] text-slate-500">Kelayakan Kuota</span>
+
+                {{-- 4. Peta Anomali --}}
+                <a href="{{ route('map.index') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('map.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                    </svg>
+                    <span>Peta</span>
                 </a>
-                <a href="{{ route('ticket.index') }}" class="p-3 rounded-2xl bg-slate-50 hover:bg-[#e6ff94] transition-colors border border-slate-200/80 flex flex-col justify-between space-y-1">
-                    <span class="font-bold text-slate-900">Cek Tiket</span>
-                    <span class="text-[10px] text-slate-500">Kode Rahasia</span>
+
+                {{-- 5. Lapor Pungli --}}
+                <a href="{{ route('report.extortion.create') }}" class="flex flex-col items-center justify-center flex-1 py-1 rounded-full text-[10px] font-bold transition-all {{ request()->routeIs('report.extortion.*') ? 'text-slate-900 font-extrabold' : 'text-slate-500 hover:text-slate-800' }}">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <span>Lapor</span>
                 </a>
-                <a href="{{ route('scorecard.index') }}" class="p-3 rounded-2xl bg-slate-50 hover:bg-[#e6ff94] transition-colors border border-slate-200/80 flex flex-col justify-between space-y-1">
-                    <span class="font-bold text-slate-900">Scorecard SLA</span>
-                    <span class="text-[10px] text-slate-500">Kepatuhan Instansi</span>
-                </a>
-                <a href="{{ route('data.index') }}" class="p-3 rounded-2xl bg-slate-50 hover:bg-[#e6ff94] transition-colors border border-slate-200/80 flex flex-col justify-between space-y-1">
-                    <span class="font-bold text-slate-900">Data Publik</span>
-                    <span class="text-[10px] text-slate-500">Unduh Dataset CSV</span>
-                </a>
-            </div>
-            <div class="pt-2 border-t border-slate-100 text-center">
-                <a href="{{ route('about') }}" class="text-[11px] font-semibold text-slate-500 hover:text-slate-900 underline">
-                    Metodologi &amp; Privasi UU PDP
-                </a>
-            </div>
+            </nav>
         </div>
     </div>
 

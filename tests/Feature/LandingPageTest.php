@@ -7,10 +7,8 @@ test('landing page returns successful status and displays civic hero', function 
 
     $response->assertStatus(200)
         ->assertSee('Bansos Adalah Hak Warga. Pastikan Sampai Utuh Tanpa Potongan.')
-        ->assertSee('Data Simulasi')
-        ->assertSee('HWR-PKH-2610-DEMO01')
-        ->assertSee('HWR-BPNT-2610-DEMO02')
-        ->assertSee('HWR-PKH-2610-DEMO03');
+        ->assertSee('Lacak Resi')
+        ->assertSee('Peta Anomali');
 
     // Antislop rule R-02: No em dashes in output
     expect(str_contains((string) $response->getContent(), '—'))->toBeFalse();

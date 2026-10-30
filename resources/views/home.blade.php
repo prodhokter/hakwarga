@@ -45,21 +45,6 @@
                             Lacak Resi
                         </button>
                     </div>
-
-                    {{-- Demo Fast Chips --}}
-                    <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
-                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">Uji Coba:</span>
-                        @foreach($demoReceipts as $demo)
-                            <button
-                                type="button"
-                                @click="fillDemo('{{ $demo['code'] }}')"
-                                class="inline-flex items-center gap-1 text-[11px] font-medium rounded-full bg-slate-100 hover:bg-[#e6ff94] text-slate-800 px-3 py-1 border border-slate-200 transition-all cursor-pointer font-mono"
-                            >
-                                <span class="font-bold">{{ $demo['code'] }}</span>
-                                <span class="text-slate-500">({{ $demo['program'] }})</span>
-                            </button>
-                        @endforeach
-                    </div>
                 </form>
             </div>
         </div>
