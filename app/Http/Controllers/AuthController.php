@@ -34,7 +34,7 @@ class AuthController extends Controller
         /** @var GoogleProvider $driver */
         $driver = Socialite::driver('google');
 
-        return $driver->redirect();
+        return $driver->with(['prompt' => 'select_account'])->redirect();
     }
 
     public function handleGoogleCallback(): RedirectResponse
