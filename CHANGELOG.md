@@ -12,6 +12,17 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [1.2.1] - 2026-10-31
+
+### Added
+- **Pembersihan Tuntas Logo Lama & Inline SVG Monogram "K":**
+  - Penghapusan seluruh file logo concept "H" lama dari direktori `public/` dan `docs/logos/`.
+  - Pemasangan logo monogram "K" murni secara inline SVG langsung di `resources/views/layouts/app.blade.php` (sidebar desktop dan topbar mobile) untuk mencegah tampilan logo lama akibat cache CDN Cloudflare / browser.
+  - Penambahan cache-busting query parameter `?v=3` pada seluruh tag favicon dan webmanifest di `<head>`.
+  - Penyempurnaan input OTP 6-box terfragmentasi horizontal, countdown timer 60 detik, dan penanganan error responsif Resend API.
+
+---
+
 ## [1.2.0] - 2026-10-31
 
 ### Added

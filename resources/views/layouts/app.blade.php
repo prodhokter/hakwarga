@@ -44,10 +44,10 @@
     <meta name="theme-color" content="#0f172a">
     <meta name="msapplication-TileColor" content="#0f172a">
 
-    <link rel="icon" href="/favicon.ico" sizes="48x48">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico?v=3" sizes="48x48">
+    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+    <link rel="manifest" href="/site.webmanifest?v=3">
 
     {{-- Primary Font: Plus Jakarta Sans --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +82,9 @@
                 </svg>
             </button>
             <div class="flex items-center gap-2">
-                <img src="/logo-symbol.svg" alt="Logo" class="w-5 h-5">
+                <svg viewBox="0 0 256 256" class="w-5 h-5 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill="#0f172a" fill-rule="evenodd" d="M68 55C61.37 55 56 60.37 56 67V211C56 217.63 61.37 223 68 223H92C98.63 223 104 217.63 104 211V163L152 211C156.69 215.69 163.31 215.69 168 211L196 183C200.69 178.31 200.69 171.69 196 167L152 123L196 79C200.69 74.31 200.69 67.69 196 63L168 35C163.31 30.31 156.69 30.31 152 35L104 83V67C104 60.37 98.63 55 92 55H68ZM126 125A14 14 0 1 0 126 153A14 14 0 1 0 126 125Z"/>
+                </svg>
                 <span class="text-sm font-extrabold text-slate-900 font-display">Kinerja</span>
             </div>
         </div>
@@ -109,7 +111,9 @@
         {{-- Sidebar Header & Custom Collapse Toggle Button --}}
         <div class="h-16 flex items-center px-4 border-b border-slate-100" :class="sidebarCollapsed ? 'justify-center' : 'justify-between'">
             <div x-show="!sidebarCollapsed" x-cloak class="flex items-center gap-2.5">
-                <img src="/logo-symbol.svg" alt="Logo" class="w-6 h-6 shrink-0">
+                <svg viewBox="0 0 256 256" class="w-6 h-6 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill="#0f172a" fill-rule="evenodd" d="M68 55C61.37 55 56 60.37 56 67V211C56 217.63 61.37 223 68 223H92C98.63 223 104 217.63 104 211V163L152 211C156.69 215.69 163.31 215.69 168 211L196 183C200.69 178.31 200.69 171.69 196 167L152 123L196 79C200.69 74.31 200.69 67.69 196 63L168 35C163.31 30.31 156.69 30.31 152 35L104 83V67C104 60.37 98.63 55 92 55H68ZM126 125A14 14 0 1 0 126 153A14 14 0 1 0 126 125Z"/>
+                </svg>
                 <span class="text-sm font-extrabold tracking-tight text-slate-900 font-display">
                     Kinerja
                 </span>
