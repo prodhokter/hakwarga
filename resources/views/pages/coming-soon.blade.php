@@ -16,7 +16,7 @@
     </p>
 
     <div class="starline-card p-6 rounded-2xl text-left max-w-lg mx-auto space-y-3">
-        <h2 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-display">Status Rilis Platform HakWarga:</h2>
+        <h2 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-display">Status Rilis Platform Kinerja:</h2>
         <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2">
             <li class="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-800 pb-1.5">
                 <span>Resi Tracker (Modul A)</span>

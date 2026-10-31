@@ -26,7 +26,7 @@ Nama Project, Deskripsi, dan Flow Aplikasi tidak bertanda wajib di form, tapi se
 
 ### Wajib sekarang
 - [ ] **Link File Presentasi** (PowerPoint, Google Slides, atau Canva). Akses harus **publik (Viewer)** agar bisa dibuka dewan juri.
-- [ ] **Link Repo GitHub (Utama)**. Ini source code utama aplikasi. Pastikan repository bisa diakses juri.
+- [ ] **Link Repo GitHub (Utama)**: `https://github.com/prodhokter/kinerja` (Sudah siap & Public).
 - [ ] **Link Surat Keterangan Orisinil Karya** (bermaterai Rp 10.000).
   - Di form, label ini tertulis "Opsional Sementara", tapi teks penjelasan fase ini menyebutnya **wajib diisi**. Anggap wajib supaya aman.
   - Langkahnya: buat surat pernyataan orisinalitas, tempel materai Rp 10.000, tanda tangan, scan, upload ke Google Drive, lalu set akses "Anyone with the link" sebagai Viewer.
@@ -34,7 +34,7 @@ Nama Project, Deskripsi, dan Flow Aplikasi tidak bertanda wajib di form, tapi se
 
 ### Opsional sekarang, wajib saat pengumpulan final
 - [ ] **Link Draft Proposal** (Google Docs)
-- [ ] **Link Deployment / Live Website**, misalnya `https://my-app.vercel.app`
+- [ ] **Link Deployment / Live Website**: `https://kinerja.web.id`
 - [ ] **Link Video Pitching YouTube**, misalnya `youtube.com/watch?v=...` atau `youtu.be/...`
 
 ### Opsional

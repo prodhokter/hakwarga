@@ -1,6 +1,6 @@
-# HakWarga
+# Kinerja
 
-[![HakWarga CI](https://github.com/prodhokter/hakwarga/actions/workflows/ci.yml/badge.svg)](https://github.com/prodhokter/hakwarga/actions/workflows/ci.yml)
+[![Kinerja CI](https://github.com/prodhokter/kinerja/actions/workflows/ci.yml/badge.svg)](https://github.com/prodhokter/kinerja/actions/workflows/ci.yml)
 ![PHP 8.3](https://img.shields.io/badge/PHP-8.3%2B-777BB4?logo=php&logoColor=white)
 ![Laravel 12](https://img.shields.io/badge/Laravel-12.x-FF2D20?logo=laravel&logoColor=white)
 ![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
@@ -25,7 +25,7 @@ Bantuan sosial adalah hak konstitusional warga negara. Namun di lapangan, warga 
 2. **Ketiadaan Kanal Pengaduan yang Benar-Benar Aman:** Warga takut melapor pemotongan liar (pungli) karena khawatir dicoret dari daftar penerima periode berikutnya.
 3. **Ketimpangan Kuota Wilayah:** Ketiadaan alat pengawasan data terbuka untuk mendeteksi wilayah yang mengalami kekurangan kuota (*under-coverage*) atau kelebihan kuota (*over-coverage*).
 
-**HakWarga** menyelesaikan ketiga masalah tersebut melalui 4 modul terpadu:
+**Kinerja** menyelesaikan ketiga masalah tersebut melalui 4 modul terpadu:
 - **Modul A (Resi Tracker):** Pelacakan resi penyaluran berbasis linimasa 5 tahap dan rincian hak itemized resmi (tunai &amp; sembako), dilengkapi fitur cetak bukti hak warga.
 - **Modul B (Peta Anomali):** Analisis spasial perbandingan kuota bansos terhadap data estimasi kemiskinan BPS menggunakan fungsi jendela SQL `percentile_cont(0.5)`, dilengkapi visualisasi MapLibre GL JS dan tabel aksesibel.
 - **Modul C (Lapor Pungli &amp; Tiket Rahasia):** Kanal pelaporan 100% anonim (tanpa identitas pelapor dan tanpa pencatatan IP) dengan sensor otomatis NIK &amp; nomor telepon via `PiiMasker`, diamankan dengan kode tiket unik dan kode rahasia 12 karakter berpembanding `hash_equals`.
@@ -35,7 +35,7 @@ Bantuan sosial adalah hak konstitusional warga negara. Namun di lapangan, warga 
 
 ## 2. Arsitektur Mandiri (Sovereign Infrastructure)
 
-HakWarga dibangun 100% di atas infrastruktur mandiri tanpa ketergantungan pada vendor PaaS tertutup (*zero vendor lock-in*).
+Kinerja dibangun 100% di atas infrastruktur mandiri tanpa ketergantungan pada vendor PaaS tertutup (*zero vendor lock-in*).
 
 ```
 [ Warga / Publik / Pengawas ]
@@ -156,8 +156,8 @@ Mengacu pada instruksi juri lomba dan panduan skill `antislop`:
 ### Langkah Pemasangan
 ```bash
 # 1. Clone repositori
-git clone https://github.com/prodhokter/hakwarga.git
-cd hakwarga
+git clone https://github.com/prodhokter/kinerja.git
+cd kinerja
 
 # 2. Pasang dependensi backend & frontend
 composer install
