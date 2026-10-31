@@ -7,10 +7,12 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:8085:80"
+    env_file:
+      - .env
     environment:
       SERVER_NAME: ":80"
       SERVER_ROOT: "public/"
-      APP_NAME: "HakWarga"
+      APP_NAME: "Kinerja"
       APP_ENV: production
       APP_DEBUG: "false"
       APP_URL: "https://kinerja.web.id"
@@ -27,6 +29,12 @@ services:
       HW_NIK_PEPPER: ${HW_NIK_PEPPER:-8f4a3c1e9b2d5a7f6e8c0b1d3a5f7e9c2b4d6a8f0e1c3b5a7d9f2e4b6a8c0d1e}
       HW_DEMO_PASSWORD: "hakwarga2026"
       APP_KEY: ${APP_KEY}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-https://kinerja.web.id/auth/google/callback}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-onboarding@resend.dev}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Kinerja}
     depends_on:
       db:
         condition: service_healthy
