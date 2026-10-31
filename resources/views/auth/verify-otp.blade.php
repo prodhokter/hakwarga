@@ -104,7 +104,7 @@
                 </label>
 
                 {{-- 6-Box Segmented Inputs --}}
-                <div class="flex items-center justify-center gap-2 sm:gap-2.5" @paste="handlePaste($event)">
+                <div class="grid grid-cols-6 gap-2 max-w-[300px] mx-auto" @paste="handlePaste($event)">
                     <template x-for="(digit, idx) in digits" :key="idx">
                         <input
                             type="text"
@@ -114,7 +114,7 @@
                             x-model="digits[idx]"
                             @input="handleInput(idx, $event)"
                             @keydown="handleKeydown(idx, $event)"
-                            class="w-11 h-13 sm:w-12 sm:h-14 text-center font-mono text-xl sm:text-2xl font-extrabold text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 transition-all select-all shadow-2xs"
+                            class="w-full h-12 sm:h-14 text-center font-mono text-xl sm:text-2xl font-extrabold text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 transition-all select-all shadow-2xs"
                         >
                     </template>
                 </div>
