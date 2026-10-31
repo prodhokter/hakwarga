@@ -115,8 +115,13 @@
                     </p>
 
                     @if(session('success'))
-                        <div class="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 rounded-xl p-3.5 text-xs font-semibold">
-                            {{ session('success') }}
+                        <div class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 shadow-2xs text-xs">
+                            <div class="w-5 h-5 rounded-md bg-[#0f172a] text-[#e6ff94] flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="font-medium text-slate-800 flex-1 leading-snug">{{ session('success') }}</span>
                         </div>
                     @endif
 
