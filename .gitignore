@@ -24,3 +24,20 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Internal Project Docs & Agent Workflows (Local only, omitted from GitHub)
+/docs/
+TODAY.md
+TODOS.md
+PRD.md
+BACKLOG.md
+SUBMISSION.md
+DATABASE.md
+STRUCTURE.md
+CONTEXT.md
+DESIGN.md
+CLAUDE.md
+AGENTS.md
+CHANGELOG.md
+.needmcp/
+
