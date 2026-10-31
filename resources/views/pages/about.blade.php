@@ -4,7 +4,7 @@
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
     <div class="space-y-1">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
-            Tentang Platform HakWarga
+            Tentang Platform Kinerja
         </h1>
         <p class="text-xs text-slate-500">
             Perlindungan Data Pribadi. Kedaulatan Sistem.
@@ -15,7 +15,7 @@
         <div>
             <h2 class="text-sm font-bold text-slate-900 font-display uppercase tracking-wider mb-2">1. Latar Belakang</h2>
             <p class="text-xs text-slate-600 leading-relaxed">
-                Bantuan sosial adalah hak warga negara. HakWarga menyediakan instrumen pelacakan resi, deteksi anomali kuota, dan kanal aduan mandiri bebas pungli.
+                Bantuan sosial adalah hak warga negara. Kinerja menyediakan instrumen pelacakan resi, deteksi anomali kuota, dan kanal aduan mandiri bebas pungli.
             </p>
         </div>
 

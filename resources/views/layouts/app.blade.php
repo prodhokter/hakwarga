@@ -3,30 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}</title>
+    <title>{{ isset($title) ? $title . ' - Kinerja' : 'Kinerja - Transparansi Bantuan Sosial' }}</title>
     <meta name="description" content="Platform transparansi pemenuhan hak bantuan sosial: Lacak Resi, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
     <link rel="canonical" href="{{ url()->current() }}">
 
     {{-- Open Graph / Facebook --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
+    <meta property="og:title" content="{{ isset($title) ? $title . ' - Kinerja' : 'Kinerja - Transparansi Bantuan Sosial' }}">
     <meta property="og:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
     <meta property="og:image" content="{{ asset('og-image.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:alt" content="HakWarga - Platform Transparansi Bantuan Sosial Indonesia">
-    <meta property="og:site_name" content="HakWarga">
+    <meta property="og:image:alt" content="Kinerja - Platform Transparansi Bantuan Sosial Indonesia">
+    <meta property="og:site_name" content="Kinerja">
     <meta property="og:locale" content="id_ID">
 
     {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ url()->current() }}">
-    <meta name="twitter:title" content="{{ isset($title) ? $title . ' - HakWarga' : 'HakWarga - Transparansi Bantuan Sosial' }}">
+    <meta name="twitter:title" content="{{ isset($title) ? $title . ' - Kinerja' : 'Kinerja - Transparansi Bantuan Sosial' }}">
     <meta name="twitter:description" content="Platform transparansi publik: Resi Tracker, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
     <meta name="twitter:image" content="{{ asset('og-image.png') }}">
-    <meta name="twitter:image:alt" content="HakWarga - Platform Transparansi Bantuan Sosial Indonesia">
+    <meta name="twitter:image:alt" content="Kinerja - Platform Transparansi Bantuan Sosial Indonesia">
 
     <meta name="theme-color" content="#0f172a">
     <meta name="msapplication-TileColor" content="#0f172a">
@@ -70,8 +70,21 @@
             </button>
             <div class="flex items-center gap-2">
                 <img src="/logo-symbol.svg" alt="Logo" class="w-5 h-5">
-                <span class="text-sm font-extrabold text-slate-900 font-display">HakWarga</span>
+                <span class="text-sm font-extrabold text-slate-900 font-display">Kinerja</span>
             </div>
+        </div>
+        <div class="flex items-center gap-2">
+            @auth
+                <span class="text-xs font-bold text-slate-800 truncate max-w-[100px]">{{ auth()->user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-[11px] font-bold text-rose-600 hover:text-rose-800">Keluar</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="text-xs font-bold text-slate-900 bg-slate-100 px-3 py-1.5 rounded-full hover:bg-slate-200">
+                    Masuk
+                </a>
+            @endauth
         </div>
     </div>
 
@@ -85,7 +98,7 @@
             <div x-show="!sidebarCollapsed" x-cloak class="flex items-center gap-2.5">
                 <img src="/logo-symbol.svg" alt="Logo" class="w-6 h-6 shrink-0">
                 <span class="text-sm font-extrabold tracking-tight text-slate-900 font-display">
-                    HakWarga
+                    Kinerja
                 </span>
             </div>
             <button
@@ -184,6 +197,61 @@
                 <span x-show="!sidebarCollapsed" x-cloak class="truncate">Cek Tiket</span>
             </a>
         </nav>
+
+        {{-- Sidebar Footer: Auth / User Status --}}
+        <div class="p-3 border-t border-slate-100 bg-slate-50/60">
+            @auth
+                <div x-show="!sidebarCollapsed" x-cloak class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 min-w-0">
+                        @if(auth()->user()->avatar)
+                            <img src="{{ auth()->user()->avatar }}" alt="Avatar" class="w-7 h-7 rounded-full border border-slate-200 shrink-0 object-cover">
+                        @else
+                            <div class="w-7 h-7 rounded-full bg-[#0f172a] text-[#e6ff94] font-bold text-xs flex items-center justify-center shrink-0">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                            </div>
+                        @endif
+                        <div class="min-w-0 flex-1">
+                            <p class="text-xs font-bold text-slate-900 truncate leading-tight">{{ auth()->user()->name }}</p>
+                            <span class="text-[10px] text-slate-500 truncate block">{{ auth()->user()->email }}</span>
+                        </div>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition-colors cursor-pointer" title="Keluar">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <div x-show="sidebarCollapsed" x-cloak class="flex justify-center">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="p-2 text-slate-500 hover:text-rose-600 rounded-xl hover:bg-rose-50 transition-colors cursor-pointer" title="Keluar ({{ auth()->user()->name }})">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            @else
+                <div x-show="!sidebarCollapsed" x-cloak>
+                    <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 w-full py-2 px-3 rounded-xl bg-slate-900 text-[#e6ff94] text-xs font-bold hover:bg-slate-800 transition-colors shadow-2xs">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                        <span>Masuk Akun</span>
+                    </a>
+                </div>
+                <div x-show="sidebarCollapsed" x-cloak class="flex justify-center">
+                    <a href="{{ route('login') }}" class="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer" title="Masuk Akun">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                    </a>
+                </div>
+            @endauth
+        </div>
     </aside>
 
     {{-- Mobile Sidebar Drawer Overlay --}}
@@ -211,7 +279,23 @@
                 </div>
             </div>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[10px] font-mono text-slate-400">Data Simulasi</span>
+                @auth
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full bg-[#0f172a] text-[#e6ff94] font-bold text-xs flex items-center justify-center">
+                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                        </div>
+                        <span class="text-xs font-bold text-slate-800 truncate max-w-[110px]">{{ auth()->user()->name }}</span>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="text-xs font-bold text-rose-600">Keluar</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-xs font-bold text-slate-900 bg-slate-100 px-3 py-1.5 rounded-lg hover:bg-slate-200">
+                        Masuk Akun
+                    </a>
+                    <span class="text-[10px] font-mono text-slate-400">Mode Tamu</span>
+                @endauth
             </div>
         </div>
     </div>

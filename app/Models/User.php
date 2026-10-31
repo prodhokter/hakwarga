@@ -26,6 +26,8 @@ class User extends Authenticatable implements FilamentUser
     protected $fillable = [
         'name',
         'email',
+        'google_id',
+        'avatar',
         'password',
         'role',
         'agency_id',
@@ -63,6 +65,10 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return in_array($this->role, [
+            UserRole::SuperAdmin->value,
+            UserRole::Moderator->value,
+            UserRole::AgencyOfficer->value,
+        ], true);
     }
 }

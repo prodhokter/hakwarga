@@ -5,7 +5,7 @@
     {{-- Header: Ultra Concise --}}
     <div class="space-y-1">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
-            Metodologi &amp; Dataset Publik HakWarga
+            Metodologi &amp; Dataset Publik Kinerja
         </h1>
         <p class="text-xs text-slate-500">
             Keterbukaan Data. Formula Matematis.

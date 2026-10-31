@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ReportController;
@@ -48,3 +49,16 @@ Route::get('/data/unduh/{dataset}', [ScorecardController::class, 'export'])->nam
 Route::get('/tentang', fn () => view('pages.about'))->name('about');
 
 Route::get('/og-image', fn () => view('og-image'))->name('og-image');
+
+// Authentication (Google OAuth + Resend OTP + Guest)
+Route::middleware('guest')->group(function () {
+    Route::get('/masuk', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+    Route::post('/auth/otp/kirim', [AuthController::class, 'sendOtp'])->name('auth.otp.send');
+    Route::get('/auth/otp/verifikasi', [AuthController::class, 'showVerifyOtp'])->name('auth.otp.verify');
+    Route::post('/auth/otp/verifikasi', [AuthController::class, 'verifyOtp'])->name('auth.otp.check');
+});
+
+Route::get('/auth/tamu', [AuthController::class, 'guest'])->name('auth.guest');
+Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');

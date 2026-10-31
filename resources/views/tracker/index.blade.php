@@ -68,7 +68,7 @@
     <div class="starline-card p-4 rounded-xl text-xs text-slate-600 dark:text-slate-400 space-y-1">
         <p class="font-bold text-slate-900 dark:text-white">Kebijakan Privasi Nomor Induk Kependudukan (NIK)</p>
         <p>
-            HakWarga tidak menyediakan fitur pencarian menggunakan NIK mentah secara terbuka. Hal ini bertujuan mencegah kebocoran informasi finansial dan profiling sepihak terhadap warga penerima bantuan sosial.
+            Platform Kinerja tidak menyediakan fitur pencarian menggunakan NIK mentah secara terbuka. Hal ini bertujuan mencegah kebocoran informasi finansial dan profiling sepihak terhadap warga penerima bantuan sosial.
         </p>
     </div>
 </div>

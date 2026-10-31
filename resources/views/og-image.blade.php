@@ -186,7 +186,7 @@
             <svg class="logo-mark" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#e6ff94" fill-rule="evenodd" d="M48 52C48 45.4 53.4 40 60 40H84C90.6 40 96 45.4 96 52V104H160V52C160 45.4 165.4 40 172 40H196C202.6 40 208 45.4 208 52V204C208 210.6 202.6 216 196 216H172C165.4 216 160 210.6 160 204V152H96V204C96 210.6 90.6 216 84 216H60C53.4 216 48 210.6 48 204V52ZM128 114A14 14 0 1 0 128 142A14 14 0 1 0 128 114Z"/>
             </svg>
-            <div class="brand-name">HakWarga</div>
+            <div class="brand-name">Kinerja</div>
             <div class="domain" style="margin-top: 6px;">kinerja.web.id</div>
         </div>
 
@@ -223,7 +223,7 @@
 
             <p class="subline">
                 Platform pemantauan bantuan sosial berbasis data publik.
-                Lacak, sanggah, dan laporkan — anonim, transparan, terbuka.
+                Lacak, sanggah, dan laporkan: anonim, transparan, terbuka.
             </p>
 
             <div class="stats-row">

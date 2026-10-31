@@ -12,6 +12,23 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [1.1.0] - 2026-10-31
+
+### Added
+- **Sistem Autentikasi 3-Jalur (Google OAuth, Resend Email OTP, & Mode Tamu):**
+  - Implementasi login via akun Google menggunakan Laravel Socialite (`/auth/google` & `/auth/google/callback`).
+  - Implementasi verifikasi surel sekali pakai (OTP 6 digit) via Resend API / fallback mailer dengan limitasi rate limit dan masa berlaku 10 menit (`/masuk` & `/auth/otp/verifikasi`).
+  - Implementasi penjelajahan instan tanpa login (Mode Tamu / Guest Mode) via `/auth/tamu` dengan session tracking.
+  - Penambahan tabel `email_otps` dan penambahan kolom `google_id`, `avatar`, serta role `Citizen` pada model `User`.
+  - Integrasi blok status akun pada sidebar desktop (expanded & collapsed), drawer navigasi mobile, serta topbar mobile.
+- **Penyelarasan Merek "Kinerja" & Perbaikan Peta:**
+  - Pembaruan nama brand resmi menjadi **Kinerja** di seluruh view, meta OG, Twitter cards, title HTML, dan file lockup SVG `public/logo.svg` sesuai domain `kinerja.web.id`.
+  - Perbaikan web worker MapLibre GL JS via bundling URL eksplisit Vite (`import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'`), memulihkan render peta interaktif di `/peta`.
+  - Sidebar desktop dibuat lebih ramping (*lean*) dari `md:w-72` (288px) menjadi `md:w-60` (240px).
+  - Penambahan suite pengujian autentikasi `tests/Feature/AuthTest.php`, Pint & Larastan Level 5 100% hijau.
+
+---
+
 ## [1.0.0] - 2026-10-30
 
 ### Added

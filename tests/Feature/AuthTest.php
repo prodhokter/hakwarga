@@ -1,0 +1,98 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Enums\UserRole;
+use App\Models\EmailOtp;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+test('login page renders successfully with 3 login pathways', function () {
+    $response = $this->get(route('login'));
+
+    $response->assertStatus(200)
+        ->assertSee('Masuk Akun')
+        ->assertSee('Masuk dengan Akun Google')
+        ->assertSee('Kirim Kode OTP')
+        ->assertSee('Jelajah sebagai Tamu');
+});
+
+test('guest mode sets session and redirects to home', function () {
+    $response = $this->get(route('auth.guest'));
+
+    $response->assertRedirect(route('home'));
+    $this->assertTrue(session('is_guest'));
+    $this->assertFalse(Auth::check());
+});
+
+test('user can request otp code via email', function () {
+    $response = $this->post(route('auth.otp.send'), [
+        'email' => 'warga.test@example.com',
+    ]);
+
+    $response->assertRedirect(route('auth.otp.verify', ['email' => 'warga.test@example.com']));
+
+    $this->assertDatabaseHas('email_otps', [
+        'email' => 'warga.test@example.com',
+    ]);
+});
+
+test('user can verify otp and gets authenticated', function () {
+    $email = 'warga.penerima@example.com';
+    $plainOtp = '654321';
+
+    EmailOtp::create([
+        'email' => $email,
+        'otp_hash' => Hash::make($plainOtp),
+        'expires_at' => now()->addMinutes(10),
+        'attempts' => 0,
+    ]);
+
+    $response = $this->post(route('auth.otp.check'), [
+        'email' => $email,
+        'otp' => $plainOtp,
+    ]);
+
+    $response->assertRedirect(route('home'));
+    $this->assertTrue(Auth::check());
+    $this->assertSame($email, Auth::user()->email);
+    $this->assertSame(UserRole::Citizen, Auth::user()->role);
+
+    // Verify token was cleared after successful login
+    $this->assertDatabaseMissing('email_otps', ['email' => $email]);
+});
+
+test('invalid otp increments attempts and rejects login', function () {
+    $email = 'warga.salah@example.com';
+
+    EmailOtp::create([
+        'email' => $email,
+        'otp_hash' => Hash::make('123456'),
+        'expires_at' => now()->addMinutes(10),
+        'attempts' => 0,
+    ]);
+
+    $response = $this->post(route('auth.otp.check'), [
+        'email' => $email,
+        'otp' => '999999',
+    ]);
+
+    $response->assertSessionHas('error');
+    $this->assertFalse(Auth::check());
+
+    $record = EmailOtp::where('email', $email)->first();
+    $this->assertNotNull($record);
+    $this->assertSame(1, $record->attempts);
+});
+
+test('authenticated user can logout', function () {
+    $user = User::factory()->create([
+        'role' => UserRole::Citizen,
+    ]);
+
+    $response = $this->actingAs($user)->post(route('logout'));
+
+    $response->assertRedirect(route('home'));
+    $this->assertFalse(Auth::check());
+});

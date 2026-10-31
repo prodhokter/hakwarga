@@ -18,7 +18,7 @@ test('about page returns successful status and displays PDP information', functi
     $response = $this->get(route('about'));
 
     $response->assertStatus(200)
-        ->assertSee('Tentang Platform HakWarga')
+        ->assertSee('Tentang Platform Kinerja')
         ->assertSee('Perlindungan Data Pribadi');
 
     expect(str_contains((string) $response->getContent(), '—'))->toBeFalse();

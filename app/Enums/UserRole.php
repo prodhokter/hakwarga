@@ -9,6 +9,7 @@ enum UserRole: string
     case SuperAdmin = 'super_admin';
     case Moderator = 'moderator';
     case AgencyOfficer = 'agency_officer';
+    case Citizen = 'citizen';
 
     public function label(): string
     {
@@ -16,6 +17,7 @@ enum UserRole: string
             self::SuperAdmin => 'Administrator Utama',
             self::Moderator => 'Moderator Publik',
             self::AgencyOfficer => 'Petugas Instansi',
+            self::Citizen => 'Warga Terdaftar',
         };
     }
 }

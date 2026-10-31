@@ -42,7 +42,7 @@ test('data page renders open data methodology and download links', function () {
     $response = $this->get(route('data.index'));
 
     $response->assertStatus(200)
-        ->assertSee('Metodologi & Dataset Publik HakWarga')
+        ->assertSee('Metodologi & Dataset Publik Kinerja')
         ->assertSee('Rumus Analisis Anomali')
         ->assertSee('Unduh CSV Scorecard SLA')
         ->assertSee('Unduh CSV Anomali Wilayah');
