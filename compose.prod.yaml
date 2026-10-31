@@ -33,7 +33,7 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-https://kinerja.web.id/auth/google/callback}
       RESEND_API_KEY: ${RESEND_API_KEY}
-      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-onboarding@resend.dev}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-mail@kinerja.web.id}
       MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Kinerja}
     depends_on:
       db:

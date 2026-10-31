@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="id" class="h-full">
 <head>
+    {{-- Google Analytics (gtag.js) --}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZSEEXLMBN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4ZSEEXLMBN');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ isset($title) ? $title . ' - Kinerja' : 'Kinerja - Transparansi Bantuan Sosial' }}</title>
