@@ -51,6 +51,11 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://kinerja.web.id/ketentuan</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://kinerja.web.id/masuk</loc>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
