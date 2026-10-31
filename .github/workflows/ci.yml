@@ -1,4 +1,4 @@
-name: HakWarga CI
+name: Kinerja CI
 
 on:
   push:
@@ -74,7 +74,7 @@ jobs:
           APP_KEY: base64:y7dMMTtvkiZqHsNWvT9/p5tOWosIPznze/IQNMNoWco=
           HW_NIK_PEPPER: ci-secret-pepper-32-chars-long-1234
         run: |
-          cp .env.example .env
+          touch .env
           php artisan migrate --force --seed
 
       - name: Execute Pest Test Suite

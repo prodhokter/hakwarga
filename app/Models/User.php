@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property UserRole $role
+ */
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
@@ -66,9 +69,9 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return in_array($this->role, [
-            UserRole::SuperAdmin->value,
-            UserRole::Moderator->value,
-            UserRole::AgencyOfficer->value,
+            UserRole::SuperAdmin,
+            UserRole::Moderator,
+            UserRole::AgencyOfficer,
         ], true);
     }
 }

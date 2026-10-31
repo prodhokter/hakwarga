@@ -40,4 +40,11 @@ CLAUDE.md
 AGENTS.md
 CHANGELOG.md
 .needmcp/
+.env.example
+.editorconfig
+.gitattributes
+.github/ISSUE_TEMPLATE/
+.github/PULL_REQUEST_TEMPLATE.md
+public/head-snippet.html
+public/og-image.svg
 
