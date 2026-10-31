@@ -103,20 +103,21 @@
                     Masukkan 6 Digit
                 </label>
 
-                {{-- 6-Box Segmented Inputs --}}
-                <div class="grid grid-cols-6 gap-2 max-w-[300px] mx-auto" @paste="handlePaste($event)">
-                    <template x-for="(digit, idx) in digits" :key="idx">
+                {{-- 6-Box Segmented Inputs (Horizontal Flex Row) --}}
+                <div class="flex items-center justify-center gap-2 sm:gap-2.5 max-w-xs mx-auto" @paste="handlePaste($event)">
+                    @for($i = 0; $i < 6; $i++)
                         <input
                             type="text"
-                            :id="'digit-' + idx"
+                            id="digit-{{ $i }}"
                             inputmode="numeric"
                             maxlength="1"
-                            x-model="digits[idx]"
-                            @input="handleInput(idx, $event)"
-                            @keydown="handleKeydown(idx, $event)"
-                            class="w-full h-12 sm:h-14 text-center font-mono text-xl sm:text-2xl font-extrabold text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 transition-all select-all shadow-2xs"
+                            x-model="digits[{{ $i }}]"
+                            @input="handleInput({{ $i }}, $event)"
+                            @keydown="handleKeydown({{ $i }}, $event)"
+                            class="text-center font-mono text-xl sm:text-2xl font-extrabold text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 transition-all select-all shadow-2xs shrink-0"
+                            style="width: 42px; height: 52px;"
                         >
-                    </template>
+                    @endfor
                 </div>
 
                 @error('otp')
