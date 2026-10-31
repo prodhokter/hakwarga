@@ -82,7 +82,7 @@ class AuthController extends Controller
     public function sendOtp(Request $request, OtpService $otpService): RedirectResponse
     {
         $validated = $request->validate([
-            'email' => ['required', 'string', 'email:rfc,dns', 'max:255'],
+            'email' => ['required', 'string', 'email:rfc', 'max:255'],
         ], [
             'email.required' => 'Alamat surel wajib diisi.',
             'email.email' => 'Format alamat surel tidak valid.',
@@ -98,15 +98,18 @@ class AuthController extends Controller
         }
         RateLimiter::hit($rateKey, 300);
 
-        $otp = $otpService->generateAndSend($email);
+        try {
+            $otp = $otpService->generateAndSend($email);
+        } catch (\Throwable $e) {
+            return back()->withInput()->with('error', 'Gagal mengirim email OTP: '.$e->getMessage());
+        }
 
         // Flash dev OTP if in local environment without Resend key
         if (app()->environment('local') && empty(config('services.resend.key'))) {
             session()->flash('dev_otp', $otp);
         }
 
-        return redirect()->route('auth.otp.verify', ['email' => $email])
-            ->with('success', 'Kode OTP 6 digit telah dikirim ke surel Anda.');
+        return redirect()->route('auth.otp.verify', ['email' => $email]);
     }
 
     public function showVerifyOtp(Request $request): View|RedirectResponse

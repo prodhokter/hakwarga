@@ -33,27 +33,33 @@ class OtpService
         $resendKey = config('services.resend.key');
 
         if (! empty($resendKey)) {
+            $fromAddress = config('mail.from.address', 'mail@kinerja.web.id');
+            $fromName = config('mail.from.name', 'Kinerja');
+
             try {
                 $response = Http::withToken($resendKey)
                     ->timeout(10)
                     ->post('https://api.resend.com/emails', [
-                        'from' => config('mail.from.address', 'noreply@kinerja.web.id'),
+                        'from' => "{$fromName} <{$fromAddress}>",
                         'to' => [$email],
                         'subject' => 'Kode Verifikasi Masuk Kinerja: '.$otp,
                         'html' => view('emails.otp', ['otp' => $otp])->render(),
                     ]);
 
                 if (! $response->successful()) {
+                    /** @var array{message?: string, name?: string} $errBody */
+                    $errBody = $response->json() ?? [];
+                    $errMsg = $errBody['message'] ?? 'Gagal mengirim email (Status: '.$response->status().')';
+
                     Log::warning('Resend API error: '.$response->body());
-                    Mail::to($email)->send(new SendOtpMail($otp));
+
+                    throw new \RuntimeException($errMsg);
                 }
+            } catch (\RuntimeException $e) {
+                throw $e;
             } catch (\Throwable $e) {
-                Log::warning('Failed sending via Resend API, falling back to Mailer: '.$e->getMessage());
-                try {
-                    Mail::to($email)->send(new SendOtpMail($otp));
-                } catch (\Throwable $mErr) {
-                    Log::error('Mail delivery failure: '.$mErr->getMessage());
-                }
+                Log::warning('Failed sending via Resend API: '.$e->getMessage());
+                throw new \RuntimeException('Gagal menghubungi layanan surel: '.$e->getMessage());
             }
         } else {
             try {
