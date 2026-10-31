@@ -12,6 +12,21 @@ Format pencatatan mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
+## [1.2.0] - 2026-10-31
+
+### Added
+- **Batas Geografis Asli 5 Kabupaten Banyumas Raya:**
+  - Penggantian poligon kotak buatan di `public/geo/central_java.geojson` dengan koordinat batas administratif resmi tingkat 2 Indonesia (Cilacap dengan pulau Nusakambangan, Banyumas, Purbalingga, Banjarnegara, Kebumen).
+  - Penyesuaian batas geografis bounding box di `resources/js/map.js` (`SW [108.52, -7.88], NE [109.95, -7.10]`) untuk tampilan peta presisi.
+- **Desain Ulang Logo Monogram "K" Kinerja & Web Asset Kit Lengkap:**
+  - Pembuatan logo monogram "K" (Pilar Kinerja) dengan simetri presisi, sudut 45 derajat, dan skor produksi 100/100 pada `svg_audit.py`.
+  - Regenerasi 42 varian aset ikon di `public/`: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `maskable-512.png`, `site.webmanifest`, `logo.svg`, dan seluruh file PNG multi-ukuran.
+  - Pembuatan file `public/robots.txt` dan `public/sitemap.xml` kanonik untuk domain `https://kinerja.web.id`.
+  - Integrasi lengkap meta tag SEO (robots, application-name, sitemap link).
+  - Pengecekan kualitas Pint dan Larastan Level 5 100% bersih.
+
+---
+
 ## [1.1.0] - 2026-10-31
 
 ### Added

@@ -43,10 +43,15 @@
     <url>
         <loc>https://kinerja.web.id/tiket</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://kinerja.web.id/tentang</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://kinerja.web.id/masuk</loc>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>

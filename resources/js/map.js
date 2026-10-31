@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let geojsonData = null;
 
     const bounds = [
-        [108.65, -7.85], // Southwest [lng, lat]
-        [109.88, -7.12], // Northeast [lng, lat]
+        [108.52, -7.88], // Southwest [lng, lat]
+        [109.95, -7.10], // Northeast [lng, lat]
     ];
 
     function initMap() {

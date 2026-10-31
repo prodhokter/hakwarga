@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ isset($title) ? $title . ' - Kinerja' : 'Kinerja - Transparansi Bantuan Sosial' }}</title>
     <meta name="description" content="Platform transparansi pemenuhan hak bantuan sosial: Lacak Resi, Peta Anomali, Lapor Pungli, dan Scorecard SLA.">
+    <meta name="robots" content="index, follow">
+    <meta name="application-name" content="Kinerja">
+    <meta name="apple-mobile-web-app-title" content="Kinerja">
     <link rel="canonical" href="{{ url()->current() }}">
 
     {{-- Open Graph / Facebook --}}
