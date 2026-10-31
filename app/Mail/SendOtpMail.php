@@ -19,7 +19,7 @@ class SendOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Kode Verifikasi Masuk Kinerja: '.$this->otp,
+            subject: $this->otp.' adalah Kode Masuk Kinerja',
         );
     }
 

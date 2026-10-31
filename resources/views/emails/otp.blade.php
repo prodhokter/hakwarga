@@ -5,6 +5,11 @@
     <title>Kode Masuk Kinerja</title>
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 32px 16px; margin: 0;">
+    {{-- Preheader snippet for email inbox preview --}}
+    <div style="display: none; max-height: 0px; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+        Kode verifikasi masuk Kinerja Anda adalah {{ $otp }}. Berlaku selama 10 menit.
+    </div>
+
     <div style="max-width: 480px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px;">
         <div style="margin-bottom: 24px;">
             <span style="font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: -0.02em;">Kinerja</span>

@@ -42,7 +42,7 @@ class OtpService
                     ->post('https://api.resend.com/emails', [
                         'from' => "{$fromName} <{$fromAddress}>",
                         'to' => [$email],
-                        'subject' => 'Kode Verifikasi Masuk Kinerja: '.$otp,
+                        'subject' => $otp.' adalah Kode Masuk Kinerja',
                         'html' => view('emails.otp', ['otp' => $otp])->render(),
                     ]);
 
