@@ -75,9 +75,9 @@
         </div>
     </div>
 
-    {{-- Collapsible Left Sidebar (Wider: md:w-72 when expanded, md:w-20 when collapsed) --}}
+    {{-- Collapsible Left Sidebar (Leaner: md:w-60 when expanded, md:w-20 when collapsed) --}}
     <aside
-        :class="sidebarCollapsed ? 'md:w-20' : 'md:w-72'"
+        :class="sidebarCollapsed ? 'md:w-20' : 'md:w-60'"
         class="hidden md:flex flex-col sticky top-0 h-screen bg-white/80 backdrop-blur-md border-r border-slate-200/80 transition-all duration-300 z-30 shrink-0">
 
         {{-- Sidebar Header & Custom Collapse Toggle Button --}}
